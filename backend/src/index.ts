@@ -1,13 +1,15 @@
 import express from "express";
 import { json } from "body-parser";
 import { userRouter } from "./routes/user";
-import { connectDB } from "./connection"
 
 
 const app = express();
 app.use(json());
 
-app.use(connectDB);
+const connectDB = require("./connection")
+
+connectDB();
+
 app.use(userRouter);
 
 

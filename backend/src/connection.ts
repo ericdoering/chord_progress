@@ -10,11 +10,8 @@ async function connectDB() {
     }
     catch(error) {
         console.error(error)
-
+        process.exit(1);
     }
 }
 
-connectDB();
-
-
-export { connectDB as connectDB };
+module.exports = connectDB;
