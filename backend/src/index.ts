@@ -6,7 +6,7 @@ import { userRouter } from "./routes/user";
 const app = express();
 app.use(json());
 
-const connectDB = require("./connection")
+import connectDB from "./connection";
 
 connectDB();
 

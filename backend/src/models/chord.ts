@@ -5,11 +5,9 @@ export default class Chord {
     pitch: Pitch;
     sharpOrFlat?: SharpOrFlat;
     chordQuality: ChordQuality;
-    scaleDegree: number;
-    constructor(pitch: Pitch, sharpOrFlat: SharpOrFlat, chordQuality: ChordQuality, scaleDegree: number) {
+    constructor(pitch: Pitch, sharpOrFlat: SharpOrFlat, chordQuality: ChordQuality) {
       this.pitch = pitch
       this.sharpOrFlat = sharpOrFlat;
       this.chordQuality = chordQuality;
-      this.scaleDegree = scaleDegree;
     }
 }

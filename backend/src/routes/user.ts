@@ -33,9 +33,4 @@ router.post("/login", [], async (req: Request, res: Response) => {
     }
 })
 
-router.get('/user', async (req: Request, res: Response) => {
-    const user = await User.find({})
-    return res.status(200).send(user)
-  })
-
   export { router as userRouter };

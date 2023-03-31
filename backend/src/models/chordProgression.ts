@@ -1,12 +1,11 @@
-import Chord from "./chord";
-import Key from "./key";
+import Scale from "./scale";
 
 
 export default class ChordProgression {
-    chords: Chord[]
-    key: Key
-    constructor(chords: Chord[], key: Key) {
-        this.chords = chords;
-        this.key = key;
-      }
+    scale: Scale
+    chordDegrees: number[]
+    constructor(scale: Scale, chordDegrees: number[]) {
+        this.scale = scale;
+        this.chordDegrees = chordDegrees;
+    }
 }
