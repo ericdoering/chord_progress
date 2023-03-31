@@ -19,6 +19,20 @@ router.post("/register", [], async (req: Request, res: Response) => {
       }
 });
 
+
+router.post("/login", [], async (req: Request, res: Response) => {
+    try {
+        const { email, password } = req.body
+        if(email & password){
+            return res.status(200)
+        }
+        else return console.log("ERROR!!!")
+    }
+    catch (err) {
+        res.status(500)
+    }
+})
+
 router.get('/user', async (req: Request, res: Response) => {
     const user = await User.find({})
     return res.status(200).send(user)

@@ -1,4 +1,3 @@
-import express from "express";
 import mongoose from "mongoose";
 
 const URI = "mongodb+srv://edoering:chordProgress777@cluster0.fqxphex.mongodb.net/?retryWrites=true&w=majority"
