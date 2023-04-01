@@ -6,6 +6,11 @@ dotenv.config();
 const router = express.Router();
 
 
+router.get("/user", [], async (req: Request, res: Response) => {
+    const user = await req.body
+    return user
+})
+
 
 router.post("/register", [], async (req: Request, res: Response) => {
     try {
@@ -27,6 +32,18 @@ router.post("/login", [], async (req: Request, res: Response) => {
             return res.status(200)
         }
         else return console.log("ERROR!!!")
+    }
+    catch (err) {
+        res.status(500)
+    }
+})
+
+router.post("/logout", [], async (req: Request, res: Response) => {
+    try {
+        const user = await req.body
+        user.destroy()
+        console.log("It worked!!!")
+        res.status(200)
     }
     catch (err) {
         res.status(500)
