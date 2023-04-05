@@ -1,13 +1,16 @@
 import express from "express";
-import { json } from "body-parser";
+import bodyParser from "body-parser";
 import { userRouter } from "./routes/user";
 import { chordProgressionRouter } from "./routes/chordprogressions";
+import connectDB from "./connection";
 
 
 const app = express();
-app.use(json());
 
-import connectDB from "./connection";
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true})) 
+
+
 
 connectDB();
 
