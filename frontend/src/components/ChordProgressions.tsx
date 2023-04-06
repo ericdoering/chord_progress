@@ -1,10 +1,13 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { ChordProgressionForm,  } from './ChordProgressionForm';
+
 
 function ChordProgressions() {
   return (
+    <>
     <Card className="text-center">
-      <Card.Header>Chord Progress</Card.Header>
+      <Card.Header></Card.Header>
       <Card.Body>
         <Card.Title>Welcome //User </Card.Title>
         <Card.Text>
@@ -13,8 +16,11 @@ function ChordProgressions() {
         </Card.Text>
         <Button variant="primary">Make Chord Progression</Button>
       </Card.Body>
-      <Card.Footer className="text-muted"></Card.Footer>
+      <Card.Footer></Card.Footer>
     </Card>
+    <ChordProgressionForm />
+    </>
+
   );
 }
 

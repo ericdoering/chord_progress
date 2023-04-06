@@ -6,6 +6,8 @@ import Home from "./components/Home";
 import ChordProgressions from "./components/ChordProgressions";
 import About from "./components/About";
 import Navbar from "./components/Navbar"
+import { RegisterForm } from "./components/RegisterForm";
+
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/chordprogressions" element={<ChordProgressions />} />
             <Route path="/about" element={<About />} />
+            <Route path="/register" element={<RegisterForm />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Container>
