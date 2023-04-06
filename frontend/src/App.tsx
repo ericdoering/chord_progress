@@ -7,6 +7,7 @@ import ChordProgressions from "./components/ChordProgressions";
 import About from "./components/About";
 import Navbar from "./components/Navbar"
 import { RegisterForm } from "./components/RegisterForm";
+import LoginForm from "./components/LoginForm";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/chordprogressions" element={<ChordProgressions />} />
             <Route path="/about" element={<About />} />
             <Route path="/register" element={<RegisterForm />} />
+            <Route path="/login" element={<LoginForm />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Container>
