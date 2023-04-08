@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import { Form, Button, Stack } from 'react-bootstrap';
+import { handleLogin } from '../api/login';
 
-interface LoginProps {
-  handleLogin: (email: string, password: string) => void;
-}
 
-const LoginForm: React.FC<LoginProps> = ({ handleLogin }) => {
+const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleLogin(email, password);
+    await handleLogin(email, password);
   };
 
   return (
@@ -38,11 +36,10 @@ const LoginForm: React.FC<LoginProps> = ({ handleLogin }) => {
           onChange={(event) => setPassword(event.target.value)}
         />
       </Form.Group>
-
-      <Button variant="primary" type="submit">
-        Login
-      </Button>
       </Stack>
+      <Stack direction="horizontal" gap={1} className="justify-content-center">
+              <Button type="submit" variant="primary">Login</Button>
+        </Stack>
     </Form>
   );
 };
