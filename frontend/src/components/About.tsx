@@ -1,36 +1,16 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import useSound from 'use-sound';
-import { Card, Button, Alert } from "react-bootstrap"
+import { Card, Button, Alert } from "react-bootstrap";
 import Beatles from "../assets/Beatles.png";
-import Whitney from "../assets/Whitney.png"
-import keyOfC from "../assets/keyOfC.png"
-import progressionExample from "../assets/audio/progressionExample.mp4"
-
-type UseDisplayTextReturnType = [string, () => void];
-
-function useDisplayText(duration = 500): UseDisplayTextReturnType {
-  const [displayText, setDisplayText] = useState('');
-  const [showText, setShowText] = useState(false);
-
-  useEffect(() => {
-    if (showText) {
-      const timeoutId = setTimeout(() => {
-        setShowText(false);
-        setDisplayText('Listen ...');
-      }, duration);
-
-      return () => clearTimeout(timeoutId);
-    }
-  }, [duration, showText]);
-
-  return [displayText, () => setShowText(true)];
-}
+import Whitney from "../assets/Whitney.png";
+import keyOfC from "../assets/keyOfC.png";
+import progressionExample from "../assets/audio/progressionExample.mp3";
+import { useDisplayText } from "../../utilities/loading";
 
 
 function About(){
-    /////////////////
+
     const [displayText, showText] = useDisplayText();
-    /////////////////
 
     const [playbackRate, setPlaybackRate] = useState(1);
     const [play] = useSound(progressionExample, {
@@ -107,8 +87,8 @@ function About(){
                     </Card.Text>
                 </Card.Body>
                 </Card>
-                <div>
-                <Button className="lg d-flex align-items-center justify-content-center" variant="outline-danger" onClick={handleClick}> Listen to the 2-5-1 progression in "C" 🎸 </Button>
+                <div className="border d-flex flex-column justify-content-center">
+                <Button className="lg d-flex align-items-center justify-content-center" variant="outline-danger" onClick={handleClick}> Listen to the 2-5-1 progression in "C"</Button>
                 {displayText && <p><Alert variant="success">{displayText}</Alert></p>}
                 </div>
             </>

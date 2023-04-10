@@ -16,7 +16,15 @@ router.get("/chordProgressions/:id", ensureLoggedIn, async (req: Request, res: R
   });
 
 router.post("/chordProgressions/add", ensureLoggedIn, async (req: Request, res: Response) => {
-  // Create a new chord progression
+      const { id, progression} = req.body;
+
+
+
+  let update = await User.updateOne({"_id": id},
+   { "$push": { "chordProgressions": progression} },
+    { "new": true, "upsert": true })
+
+    return res.status(201).send(update);
 });
 
 router.post("/chordProgressions/:id/delete", ensureLoggedIn, async (req: Request, res: Response) => {
