@@ -31,7 +31,7 @@ const scales = {
 
     "A#": new Scale(
     [
-      new Chord(Pitch.A, ChordQuality.MAJOR),
+      new Chord(Pitch.A, ChordQuality.MAJOR, true),
       new Chord(Pitch.B, ChordQuality.MINOR),
       new Chord(Pitch.C, ChordQuality.MINOR, true),
       new Chord(Pitch.D, ChordQuality.MAJOR),

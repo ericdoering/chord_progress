@@ -71,7 +71,7 @@ function About(){
                 <Card className="border d-flex align-items-center justify-content-center">
                 <Card.Img variant="top" src={keyOfC} style={{ width: "60rem", height: "20rem" }} />
                 <Card.Body>
-                    <Card.Title>How to we build a chord progression?</Card.Title>
+                    <Card.Title>How do we build a chord progression?</Card.Title>
                     <Card.Text>
                     Let's take a look at this diagram above to get an idea of how we can construct a chord progression.
                     As you see highlighted on the left, we have a musical key. In this case we will use the key of "C".

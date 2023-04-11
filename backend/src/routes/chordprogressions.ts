@@ -7,7 +7,11 @@ dotenv.config();
 const router = express.Router();
 
 
-router.get("/chordProgressions", ensureLoggedIn, async (req: Request, res: Response) => {
+router.get("/chordProgressions/:id", async (req: Request, res: Response) => {
+  // const { id } = req.body;
+
+  let user = await User.findOne({"_id": req.params.id});
+  return res.status(200).send(user.chordProgressions)
 
   });
 
@@ -15,10 +19,8 @@ router.get("/chordProgressions/:id", ensureLoggedIn, async (req: Request, res: R
     // Get a specific user chord progression
   });
 
-router.post("/chordProgressions/add", ensureLoggedIn, async (req: Request, res: Response) => {
-      const { id, progression} = req.body;
-
-
+router.post("/chordProgressions/add", async (req: Request, res: Response) => {
+      const { id, progression } = req.body;
 
   let update = await User.updateOne({"_id": id},
    { "$push": { "chordProgressions": progression} },
