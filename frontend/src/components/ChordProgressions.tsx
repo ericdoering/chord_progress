@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { ChordProgressionForm,  } from './ChordProgressionForm';
+import { ChordProgressionList } from './ChordProgressionList';
 
 
 function ChordProgressions() {
@@ -19,6 +20,7 @@ function ChordProgressions() {
       <Card.Footer></Card.Footer>
     </Card>
     <ChordProgressionForm />
+    <ChordProgressionList />
     </>
 
   );

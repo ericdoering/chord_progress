@@ -27,15 +27,10 @@ const style: Option[] = [
   { value: "blues", label: "blues" },
 ];
 
-const instrument: Option[] = [
-  { value: "guitar", label: "guitar" },
-  { value: "piano", label: "piano" },
-];
 
 export const ChordProgressionForm = () => {
   const [selectedOption1, setSelectedOption1] = useState<Option | null>(null);
   const [selectedOption2, setSelectedOption2] = useState<Option | null>(null);
-  const [selectedOption3, setSelectedOption3] = useState<Option | null>(null);
 
   const handleOption1Change = (option: Option | null) => {
     setSelectedOption1(option);
@@ -45,9 +40,6 @@ export const ChordProgressionForm = () => {
     setSelectedOption2(option);
   };
 
-  const handleOption3Change = (option: Option | null) => {
-    setSelectedOption3(option);
-  };
 
   return (
     <Form>
@@ -94,28 +86,8 @@ export const ChordProgressionForm = () => {
         </Dropdown>
       </Form.Group>
 
-      <Form.Group controlId="formOption3">
-        <Form.Label>Instrument</Form.Label>
-        <Dropdown>
-          <Dropdown.Toggle variant="primary" id="dropdown-option3">
-            {selectedOption3?.label ?? 'Select an option'}
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            {instrument.map((option) => (
-              <Dropdown.Item
-                key={option.value}
-                active={selectedOption3?.value === option.value}
-                onClick={() => handleOption3Change(option)}
-              >
-                {option.label}
-              </Dropdown.Item>
-            ))}
-            </Dropdown.Menu>
-        </Dropdown>
-        </Form.Group>
-        </Stack>
-        </Form>
+      </Stack>
+      </Form>
     )
 };
          

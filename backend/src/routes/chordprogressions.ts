@@ -11,6 +11,8 @@ router.get("/chordProgressions/:id", async (req: Request, res: Response) => {
   // const { id } = req.body;
 
   let user = await User.findOne({"_id": req.params.id});
+  res.header("Access-Control-Allow-Origin", "*");
+
   return res.status(200).send(user.chordProgressions)
 
   });
@@ -26,7 +28,9 @@ router.post("/chordProgressions/add", async (req: Request, res: Response) => {
    { "$push": { "chordProgressions": progression} },
     { "new": true, "upsert": true })
 
-    return res.status(201).send(update);
+    let user = req.body.user
+
+    return res.status(201).send(user.chordProgressions);
 });
 
 router.post("/chordProgressions/:id/delete", ensureLoggedIn, async (req: Request, res: Response) => {
