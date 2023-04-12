@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 
 interface Props {
   chordProgression: {
@@ -12,9 +12,12 @@ export const ChordProgression: React.FC<Props> = ({ chordProgression }) => {
   return (
     <Card className="h-100">
       <Card.Body>
-        <h3>{chordProgression.style}</h3>
-        <h6>{chordProgression.key}</h6>
+        <h3>Style: <b>{chordProgression.style}</b></h3>
+        <h6>Key: <b>{chordProgression.key}</b></h6>
       </Card.Body>
+      <Card.Footer>
+        <Button>Details</Button>
+      </Card.Footer>
     </Card>
   );
 };
