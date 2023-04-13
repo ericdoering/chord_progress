@@ -8,10 +8,15 @@ import About from "./components/About";
 import Navbar from "./components/Navbar"
 import { RegisterForm } from "./components/RegisterForm";
 import LoginForm from "./components/LoginForm";
+import { ChordProgressionDetail } from "./components/ChordProgressionDetail";
 
-
+import E_Major from "./assets/chords/E_Major.png"
+import A_Major from "./assets/chords/A_Major.png"
+import B_Major from "./assets/chords/B_Major.png"
 
 function App() {
+  const imageUrls = [E_Major, A_Major, B_Major];
+  const imageCaptions = ['E Major', 'A Major', 'B Major'];
   return (
     <>
       <Navbar />
@@ -19,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/chordprogressions" element={<ChordProgressions />} />
+            <Route path="/chordprogressiondetail" element={<ChordProgressionDetail imageUrls={imageUrls} imageCaptions={imageCaptions} />} />
             <Route path="/about" element={<About />} />
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/login" element={<LoginForm />} />
