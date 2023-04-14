@@ -11,7 +11,7 @@ router.get("/chordProgressions/:id", async (req: Request, res: Response) => {
   // const { id } = req.body;
 
   let user = await User.findOne({"_id": req.params.id});
-  res.header("Access-Control-Allow-Origin", "*");
+  
 
   return res.status(200).send(user.chordProgressions)
 
@@ -23,6 +23,7 @@ router.get("/chordProgressions/:id", ensureLoggedIn, async (req: Request, res: R
 
 router.post("/chordProgressions/add", async (req: Request, res: Response) => {
       const { id, progression } = req.body;
+  
 
   let update = await User.updateOne({"_id": id},
    { "$push": { "chordProgressions": progression} },
@@ -30,7 +31,7 @@ router.post("/chordProgressions/add", async (req: Request, res: Response) => {
 
     let user = req.body.user
 
-    return res.status(201).send(user.chordProgressions);
+    return res.status(201).send(update);
 });
 
 router.post("/chordProgressions/:id/delete", ensureLoggedIn, async (req: Request, res: Response) => {

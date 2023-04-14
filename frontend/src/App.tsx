@@ -13,6 +13,7 @@ import { ChordProgressionDetail } from "./components/ChordProgressionDetail";
 import E_Major from "./assets/chords/E_Major.png"
 import A_Major from "./assets/chords/A_Major.png"
 import B_Major from "./assets/chords/B_Major.png"
+import { ChordProgressionForm } from "./components/ChordProgressionForm";
 
 function App() {
   const imageUrls = [E_Major, A_Major, B_Major];
@@ -24,6 +25,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/chordprogressions" element={<ChordProgressions />} />
+            <Route path="/chordprogressionadd" element={<ChordProgressionForm />} />
             <Route path="/chordprogressiondetail" element={<ChordProgressionDetail imageUrls={imageUrls} imageCaptions={imageCaptions} />} />
             <Route path="/about" element={<About />} />
             <Route path="/register" element={<RegisterForm />} />

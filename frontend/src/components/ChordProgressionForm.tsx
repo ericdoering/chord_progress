@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { Form, Dropdown, Stack } from 'react-bootstrap';
+import { Form, Dropdown, Stack, Button } from 'react-bootstrap';
+import axios from 'axios';
+import { API_URL } from '../api/constants';
+import { useNavigate } from 'react-router-dom';
 
 type Option = {
   value: string;
   label: string;
 };
+
 
 const key: Option[] = [
   { value: "A", label: "Key of A" },
@@ -32,6 +36,9 @@ export const ChordProgressionForm = () => {
   const [selectedOption1, setSelectedOption1] = useState<Option | null>(null);
   const [selectedOption2, setSelectedOption2] = useState<Option | null>(null);
 
+  let navigate = useNavigate(); 
+  let path = `/chordprogressions`; 
+
   const handleOption1Change = (option: Option | null) => {
     setSelectedOption1(option);
   };
@@ -40,9 +47,32 @@ export const ChordProgressionForm = () => {
     setSelectedOption2(option);
   };
 
+  const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    evt.preventDefault();
+
+    const chordProgressionPayload = {
+      id: "64332ce17ebe62e53c52063d",
+      progression: {
+        key: selectedOption1?.value,
+        style: selectedOption2?.value
+      },
+      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzMyY2UxN2ViZTYyZTUzYzUyMDYzZCIsImVtYWlsIjoiam9lQGpvZS5qb2UiLCJpYXQiOjE2ODEwNzU0MjV9.Ha2OD5nD49-dEM_suxDnC0ojqeuM9-mKaYg0_Qs33yI"
+    };
+    try {
+      const response = await (await axios.post(`${API_URL}/chordProgressions/add`, chordProgressionPayload));
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+    navigate(path);
+
+  };
+
+
+
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
     <Stack direction="horizontal"  className="md-5 justify-content-center">
       <Form.Group controlId="formOption1">
         <Form.Label>Musical Key</Form.Label>
@@ -87,6 +117,9 @@ export const ChordProgressionForm = () => {
       </Form.Group>
 
       </Stack>
+      <Button variant="primary" type="submit">
+        GENERATE CHORD PROGRESSION
+      </Button>
       </Form>
     )
 };

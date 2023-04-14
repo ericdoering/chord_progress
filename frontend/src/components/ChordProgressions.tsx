@@ -1,10 +1,17 @@
-import Button from 'react-bootstrap/Button';
+
 import Card from 'react-bootstrap/Card';
-import { ChordProgressionForm,  } from './ChordProgressionForm';
+import { Button } from 'react-bootstrap';
 import { ChordProgressionList } from './ChordProgressionList';
+import { useNavigate } from "react-router-dom";
+  
 
 
 function ChordProgressions() {
+  let navigate = useNavigate(); 
+  const routeChange = () =>{ 
+    let path = `/chordprogressionadd`; 
+    navigate(path);
+  }
   return (
     <>
     <Card className="text-center">
@@ -15,11 +22,15 @@ function ChordProgressions() {
           Click the button below to begin making your chord progression, or
           scoll below to see previously made chord progressions
         </Card.Text>
-        <Button variant="primary">Make Chord Progression</Button>
       </Card.Body>
-      <Card.Footer></Card.Footer>
+      <Card.Footer>
+      <Button color="primary" className="px-4"
+            onClick={routeChange}
+              >
+              Create chord progression
+            </Button>
+      </Card.Footer>
     </Card>
-    <ChordProgressionForm />
     <ChordProgressionList />
     </>
 
