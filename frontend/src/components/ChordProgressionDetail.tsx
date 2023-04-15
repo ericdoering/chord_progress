@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Image } from 'react-bootstrap';
+import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 
 
 interface DisplayProps {
@@ -7,9 +8,15 @@ interface DisplayProps {
     imageCaptions: string[];
   }
 
-
   export const ChordProgressionDetail: React.FC<DisplayProps> = ({ imageUrls, imageCaptions }) => {
+    let navigate = useNavigate(); 
+    const nextPage = () => {
+      let path = `/chordprogressions`; 
+      navigate(path);
+      };
+
     return (
+      <>
       <Container>
         <Row>
           {imageUrls.map((url, index) => (
@@ -23,5 +30,9 @@ interface DisplayProps {
         <h2>Style: Blues</h2>
         <h3>Songs that utilize this chord progression</h3>
       </Container>
+      <Button onClick={nextPage}>
+          Return
+      </Button>
+      </>
     );
   };

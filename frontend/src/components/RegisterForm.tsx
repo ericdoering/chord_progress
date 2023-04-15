@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Form, Button, Stack } from "react-bootstrap";
+import axios from "axios";
+import { API_URL } from "../api/constants";
+import { useNavigate } from "react-router-dom";
 
 interface User {
   firstName: string;
@@ -8,7 +11,9 @@ interface User {
   password: string;
 }
 
-const RegisterForm: React.FC = () => {
+export const RegisterForm: React.FC = () => {
+  let navigate = useNavigate(); 
+  let path = `/about`; 
   const [user, setUser] = useState<User>({
     firstName: "",
     lastName: "",
@@ -21,10 +26,22 @@ const RegisterForm: React.FC = () => {
     setUser({ ...user, [name]: value });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(user);
-    // do something with user data (e.g. send to server)
+    
+    const registerPayload = {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      password: user.password,
+    };
+    try {
+      const response = await (await axios.post(`${API_URL}/register`, registerPayload));
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+    navigate(path);
   };
 
   return (
@@ -85,4 +102,3 @@ const RegisterForm: React.FC = () => {
   );
 };
 
-export { RegisterForm };

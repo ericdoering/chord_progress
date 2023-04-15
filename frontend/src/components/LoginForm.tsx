@@ -1,39 +1,67 @@
 import React, { useState } from 'react';
 import { Form, Button, Stack } from 'react-bootstrap';
-import { handleLogin } from '../api/login';
+import { API_URL } from '../api/constants';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+interface User {
+  email: string;
+  password: string;
+}
 
 
-const LoginForm: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export const LoginForm: React.FC = () => {
+  let navigate = useNavigate(); 
+  let path = `/chordprogressions`; 
+  const [user, setUser] = useState<User>({
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value });
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await handleLogin(email, password);
+    const loginPayload = {
+      email: user.email,
+      password: user.password,
+    };
+    try {
+      const response = await (await axios.post(`${API_URL}/login`, loginPayload));
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+    navigate(path);
   };
 
   return (
     <Form onSubmit={handleSubmit}>
     <Stack direction="vertical" gap={1} className="justify-content-center">
-      <Form.Group className="d-flex flex-column align-items-center mb-4" controlId="formBasicEmail">
+    <Form.Group className="d-flex flex-column align-items-center mb-4" controlId="formEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control
           className="w-25"
           type="email"
-          placeholder="Enter email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          name="email"
+          value={user.email}
+          onChange={handleInputChange}
+          required
         />
       </Form.Group>
 
-      <Form.Group className="d-flex flex-column align-items-center mb-4" controlId="formBasicPassword">
+      <Form.Group className="d-flex flex-column align-items-center mb-4" controlId="formPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control
           className="w-25"
           type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          name="password"
+          value={user.password}
+          onChange={handleInputChange}
+          required
         />
       </Form.Group>
       </Stack>
@@ -44,4 +72,3 @@ const LoginForm: React.FC = () => {
   );
 };
 
-export default LoginForm;

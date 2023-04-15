@@ -7,7 +7,7 @@ import ChordProgressions from "./components/ChordProgressions";
 import About from "./components/About";
 import Navbar from "./components/Navbar"
 import { RegisterForm } from "./components/RegisterForm";
-import LoginForm from "./components/LoginForm";
+import { LoginForm } from "./components/LoginForm";
 import { ChordProgressionDetail } from "./components/ChordProgressionDetail";
 
 import E_Major from "./assets/chords/E_Major.png"
