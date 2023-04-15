@@ -26,9 +26,9 @@ const key: Option[] = [
 ];
 
 const style: Option[] = [
-  { value: "pop", label: "pop" },
-  { value: "jazz", label: "jazz" },
-  { value: "blues", label: "blues" },
+  { value: "Pop", label: "Pop" },
+  { value: "Jazz", label: "Jazz" },
+  { value: "Blues", label: "Blues" },
 ];
 
 
@@ -59,7 +59,7 @@ export const ChordProgressionForm = () => {
       token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzMyY2UxN2ViZTYyZTUzYzUyMDYzZCIsImVtYWlsIjoiam9lQGpvZS5qb2UiLCJpYXQiOjE2ODEwNzU0MjV9.Ha2OD5nD49-dEM_suxDnC0ojqeuM9-mKaYg0_Qs33yI"
     };
     try {
-      const response = await (await axios.post(`${API_URL}/chordProgressions/add`, chordProgressionPayload));
+      const response = await axios.post(`${API_URL}/chordProgressions/add`, chordProgressionPayload);
       console.log(response.data);
     } catch (error) {
       console.error(error);

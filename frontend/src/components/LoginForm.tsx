@@ -30,7 +30,7 @@ export const LoginForm: React.FC = () => {
       password: user.password,
     };
     try {
-      const response = await (await axios.post(`${API_URL}/login`, loginPayload));
+      const response = await axios.post(`${API_URL}/login`, loginPayload);
       console.log(response.data);
     } catch (error) {
       console.error(error);

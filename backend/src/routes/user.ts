@@ -43,8 +43,6 @@ router.post("/register", async (req: Request, res: Response) => {
             SECRET_KEY,
         );
 
-        user.token = token
-
         user.save()
 
         res.status(201).json(user)
@@ -75,7 +73,8 @@ router.post("/login", async (req: Request, res: Response) => {
             
         if(user && (await bcrypt.compare(password, user.password))){
             const token = jwt.sign(
-            { id: user._id },
+            { id: user._id,
+            email: user.email},
             SECRET_KEY,
             )
             user.token = token
@@ -90,6 +89,7 @@ router.post("/login", async (req: Request, res: Response) => {
                 user
             })
         }
+        else throw new UnauthorizedError();
     }
     catch (err) {
         return res.status(500).send();

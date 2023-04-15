@@ -14,10 +14,9 @@ import E_Major from "./assets/chords/E_Major.png"
 import A_Major from "./assets/chords/A_Major.png"
 import B_Major from "./assets/chords/B_Major.png"
 import { ChordProgressionForm } from "./components/ChordProgressionForm";
+import { ChordProgression } from "./components/ChordProgression";
 
 function App() {
-  const imageUrls = [E_Major, A_Major, B_Major];
-  const imageCaptions = ['E Major', 'A Major', 'B Major'];
   return (
     <>
       <Navbar />
@@ -26,7 +25,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/chordprogressions" element={<ChordProgressions />} />
             <Route path="/chordprogressionadd" element={<ChordProgressionForm />} />
-            <Route path="/chordprogressiondetail" element={<ChordProgressionDetail imageUrls={imageUrls} imageCaptions={imageCaptions} />} />
+            <Route path="/chordprogressiondetail/:id" element={<ChordProgressionDetail />} />
             <Route path="/about" element={<About />} />
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/login" element={<LoginForm />} />

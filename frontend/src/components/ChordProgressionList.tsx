@@ -13,7 +13,7 @@ export function ChordProgressionList() {
   
   useEffect(() => {
     const getChordProgressions = async () => {
-      const result = await axios.get<ChordProgressionType[]>(`${API_URL}/chordProgressions/64332ce17ebe62e53c52063d`);
+      const result = await axios.get<ChordProgressionType[]>(`${API_URL}/user/64332ce17ebe62e53c52063d/chordProgressions`);
       setChordProgressions(result.data);
     };
 
@@ -21,7 +21,7 @@ export function ChordProgressionList() {
   },[]);
 
   const progressionComponents = chordProgressions.map((chordProgression: ChordProgressionType) => (
-    <ChordProgression key={chordProgression.key} chordProgression={chordProgression} />
+    <ChordProgression key={chordProgression._id} chordProgression={chordProgression} />
   ));
 
   return (

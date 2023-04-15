@@ -36,7 +36,7 @@ export const RegisterForm: React.FC = () => {
       password: user.password,
     };
     try {
-      const response = await (await axios.post(`${API_URL}/register`, registerPayload));
+      const response = await axios.post(`${API_URL}/register`, registerPayload);
       console.log(response.data);
     } catch (error) {
       console.error(error);

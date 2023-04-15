@@ -1,11 +1,11 @@
 export enum Pitch {
-    A,
-    B ,
-    C,
-    D,
-    E,
-    F,
-    G,
+    A = 'A',
+    B  = 'B',
+    C = 'C',
+    D = 'D',
+    E = 'D',
+    F= 'F',
+    G = 'G',
 }
 
 export enum ChordQuality {

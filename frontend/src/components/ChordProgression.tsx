@@ -6,6 +6,7 @@ interface Props {
   chordProgression: {
     style: string;
     key: string;
+    _id: string
   };
 }
 
@@ -14,7 +15,7 @@ export const ChordProgression: React.FC<Props> = ({ chordProgression }) => {
 
   let navigate = useNavigate(); 
   const routeChange = () =>{ 
-  let path = `/chordprogressiondetail`; 
+  let path = `/chordprogressiondetail/${chordProgression._id}`; 
   navigate(path);
 }
 

@@ -46,11 +46,6 @@ const userSchema = new mongoose.Schema(
             trim: true
         },
 
-        token: {
-            type: String,
-            default: null
-        },
-
         chordProgressions: [
             {
                 key: {
