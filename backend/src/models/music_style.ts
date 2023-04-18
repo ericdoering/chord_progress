@@ -24,7 +24,7 @@ const Pop = new MusicStyle(StyleName.POP, [1, 5, 6, 4])
 export { Blues, Jazz, Pop }
 
 export const styles = {
-    'Jazz':Jazz, 
+    'Jazz': Jazz, 
     'Blues': Blues,
     'Pop': Pop
 }

@@ -44,8 +44,8 @@ router.post("/register", async (req: Request, res: Response) => {
         );
 
         user.save()
-
-        res.status(201).json(user)
+        user.token = token
+        res.status(201).json({user, token})
         
       } 
       catch (err) {
@@ -77,17 +77,7 @@ router.post("/login", async (req: Request, res: Response) => {
             email: user.email},
             SECRET_KEY,
             )
-            user.token = token
-
-            const options = {
-                expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-                httpOnly: true
-            };
-            res.status(200).cookie("token", token, options).json({
-                success: true,
-                token,
-                user
-            })
+            return res.status(200).send({user, token})
         }
         else throw new UnauthorizedError();
     }

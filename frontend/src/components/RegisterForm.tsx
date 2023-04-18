@@ -37,6 +37,9 @@ export const RegisterForm: React.FC = () => {
     };
     try {
       const response = await axios.post(`${API_URL}/register`, registerPayload);
+      const data = response.data;
+      const token = data["token"]
+      localStorage.setItem('token', token)
       console.log(response.data);
     } catch (error) {
       console.error(error);

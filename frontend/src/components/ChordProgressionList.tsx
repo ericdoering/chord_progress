@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ChordProgression } from './ChordProgression';
 import { API_URL } from '../api/constants';
+import { jwtGet } from '../api/client';
 
 interface ChordProgressionType {
   style: string;
@@ -13,7 +14,7 @@ export function ChordProgressionList() {
   
   useEffect(() => {
     const getChordProgressions = async () => {
-      const result = await axios.get<ChordProgressionType[]>(`${API_URL}/user/64332ce17ebe62e53c52063d/chordProgressions`);
+      const result = await jwtGet<ChordProgressionType[]>(`chordProgressions`);
       setChordProgressions(result.data);
     };
 

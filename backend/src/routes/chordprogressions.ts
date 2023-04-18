@@ -5,6 +5,7 @@ import { ensureLoggedIn } from "../middleware/authentication";
 import ChordProgression from "../models/chordProgression";
 import { scales } from "../models/scale";
 import { styles } from "../models/music_style";
+import { parseJwt } from "../utils/jwt";
 
 dotenv.config();
 const router = express.Router();
@@ -12,9 +13,10 @@ const router = express.Router();
 
 
 
-router.get("/user/:id/chordProgressions", async (req: Request, res: Response) => {
+router.get("/chordProgressions", async (req: Request, res: Response) => {
   // const { id } = req.body;
-  let user = await User.findOne({"_id": req.params.id});
+  const userData = parseJwt(req)
+  let user = await User.findOne({"_id": userData.id});
   return res.status(200).send(user.chordProgressions)
   });
 
@@ -22,8 +24,9 @@ router.get("/user/:id/chordProgressions", async (req: Request, res: Response) =>
 
 
 
-router.get("/user/:id/chordProgression/:progression_id", async (req: Request, res: Response) => {
-  let user = await User.findOne({"_id": req.params.id});
+router.get("/chordProgression/:progression_id", async (req: Request, res: Response) => {
+  const userData = parseJwt(req)
+  let user = await User.findOne({"_id": userData.id});
   let chordProgression = user.chordProgressions.find((progression: { _id: string; }) => progression._id.valueOf() === req.params.progression_id)
   const {key, style} = chordProgression;
   // @ts-ignore
@@ -37,9 +40,9 @@ router.get("/user/:id/chordProgression/:progression_id", async (req: Request, re
 
 
 router.post("/chordProgressions/add", async (req: Request, res: Response) => {
-      const { id, progression } = req.body;
-  
-  let update = await User.updateOne({"_id": id},
+  const progression = req.body.progression
+  const userData = parseJwt(req)
+  let update = await User.updateOne({"_id": userData.id},
    { "$push": { "chordProgressions": progression} },
     { "new": true, "upsert": true })
 

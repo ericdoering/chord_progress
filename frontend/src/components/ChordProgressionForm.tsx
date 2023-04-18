@@ -3,6 +3,7 @@ import { Form, Dropdown, Stack, Button } from 'react-bootstrap';
 import axios from 'axios';
 import { API_URL } from '../api/constants';
 import { useNavigate } from 'react-router-dom';
+import { jwtPost } from '../api/client';
 
 type Option = {
   value: string;
@@ -51,15 +52,13 @@ export const ChordProgressionForm = () => {
     evt.preventDefault();
 
     const chordProgressionPayload = {
-      id: "64332ce17ebe62e53c52063d",
       progression: {
         key: selectedOption1?.value,
         style: selectedOption2?.value
       },
-      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzMyY2UxN2ViZTYyZTUzYzUyMDYzZCIsImVtYWlsIjoiam9lQGpvZS5qb2UiLCJpYXQiOjE2ODEwNzU0MjV9.Ha2OD5nD49-dEM_suxDnC0ojqeuM9-mKaYg0_Qs33yI"
     };
     try {
-      const response = await axios.post(`${API_URL}/chordProgressions/add`, chordProgressionPayload);
+      const response = await jwtPost(`chordProgressions/add`, chordProgressionPayload);
       console.log(response.data);
     } catch (error) {
       console.error(error);

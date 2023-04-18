@@ -3,7 +3,7 @@ export enum Pitch {
     B  = 'B',
     C = 'C',
     D = 'D',
-    E = 'D',
+    E = 'E',
     F= 'F',
     G = 'G',
 }

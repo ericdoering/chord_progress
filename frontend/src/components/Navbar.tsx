@@ -1,7 +1,16 @@
 import { Container, Nav, Navbar as NavbarBs } from "react-bootstrap"
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+// import { logout } from "../../utilities/logout"
+ import { useCallback } from "react";
 
-function Navbar() {
+
+const Navbar = () => {
+    let navigate = useNavigate(); 
+    const logout = () => {
+        localStorage.removeItem('token')
+        let path = `/`; 
+        navigate(path);
+    }
     return (
         <NavbarBs sticky="top" className="bg-white shadow-sm mb-3">
             <Container>
@@ -11,7 +20,7 @@ function Navbar() {
                     <Nav.Link to="/chordprogressions" as={NavLink}>Chord Progressions</Nav.Link>
                     <Nav.Link to="/register" as={NavLink}>Register</Nav.Link>
                     <Nav.Link to="/login" as={NavLink}>Login</Nav.Link>
-                    <Nav.Link>Logout</Nav.Link>
+                    <Nav.Link onClick={logout}>Logout</Nav.Link>
                 </Nav>
             </Container>
         </NavbarBs>

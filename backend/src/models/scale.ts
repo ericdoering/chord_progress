@@ -1,15 +1,17 @@
 import Chord from "./chord";
 import { Pitch, ChordQuality } from "./constants";
-import Key, {keys} from "./key";
+import Key, { keys } from "./key";
 
 
 export default class Scale {
     chords: Chord[]
     key: Key
-    constructor(chords: Chord[], key: Key) {
+    sharp?: boolean;
+    constructor(chords: Chord[], key: Key, sharp?: boolean) {
         // Keep theses in scale order.
         this.chords = chords;
         this.key = key;
+        this.sharp = sharp;
       }
 
 }

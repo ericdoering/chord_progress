@@ -1,11 +1,11 @@
 
-import { Pitch,ChordQuality } from "./constants";
+import { Pitch, ChordQuality } from "./constants";
 
 export default class Chord {
     pitch: Pitch;
     chordQuality: ChordQuality;
-    sharp?: string
-    constructor(pitch: Pitch,  chordQuality: ChordQuality, sharp?: string) {
+    sharp?: boolean
+    constructor(pitch: Pitch,  chordQuality: ChordQuality, sharp?: boolean) {
       this.pitch = pitch
       this.sharp = sharp;
       this.chordQuality = chordQuality;

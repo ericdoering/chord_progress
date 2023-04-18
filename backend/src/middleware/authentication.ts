@@ -14,9 +14,9 @@ function authenticateJWT(req: Request, res: Response, next: NextFunction ) {
     }
     return next();
   } catch (err) {
-    return next();
+    return next(err);
   }
-}
+};
 
 
 
@@ -27,7 +27,7 @@ function ensureLoggedIn(req: Request, res: Response, next: NextFunction) {
   } catch (err) {
     return next(err);
   }
-}
+};
 
 
 export {

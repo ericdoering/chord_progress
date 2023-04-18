@@ -32,6 +32,9 @@ export const LoginForm: React.FC = () => {
     try {
       const response = await axios.post(`${API_URL}/login`, loginPayload);
       console.log(response.data);
+      const data = response.data;
+      const token = data["token"]
+      localStorage.setItem('token', token)
     } catch (error) {
       console.error(error);
     }
