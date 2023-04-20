@@ -18,7 +18,12 @@ router.use(cookieParser());
 router.get("/user", async (req: Request, res: Response) => {
     let users = await User.find({});
     return res.status(200).send(users)
-})
+});
+
+router.get("/user/:user_id", async (req: Request, res: Response) => {
+    let user = await User.findOne({ _id: req.params.user_id });
+    return res.status(200).send(user)
+});
 
 
 

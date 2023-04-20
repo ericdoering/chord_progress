@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Mulish:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Lexend+Deca&family=Mulish:wght@500&display=swap');
+
+.app {
+    /* font-family: 'Amatic SC', cursive; */
+    font-family: 'Lexend Deca', sans-serif;
+    background-color: rgb(237, 223, 156);
+    height: 100%;
+};

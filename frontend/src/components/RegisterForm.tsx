@@ -11,7 +11,13 @@ interface User {
   password: string;
 }
 
-export const RegisterForm: React.FC = () => {
+interface RegisterFormProps {
+  setLoggedIn: (loggedIn: boolean) => void
+}
+
+
+export const RegisterForm: React.FC<RegisterFormProps> = (props) => {
+  const {setLoggedIn} = props
   let navigate = useNavigate(); 
   let path = `/about`; 
   const [user, setUser] = useState<User>({
@@ -40,6 +46,7 @@ export const RegisterForm: React.FC = () => {
       const data = response.data;
       const token = data["token"]
       localStorage.setItem('token', token)
+      setLoggedIn(true)
       console.log(response.data);
     } catch (error) {
       console.error(error);

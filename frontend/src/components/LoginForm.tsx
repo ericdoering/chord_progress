@@ -9,8 +9,12 @@ interface User {
   password: string;
 }
 
+interface LoginFormProps {
+  setLoggedIn: (loggedIn: boolean) => void
+}
 
-export const LoginForm: React.FC = () => {
+export const LoginForm: React.FC<LoginFormProps> = (props: LoginFormProps) => {
+  const {setLoggedIn} = props;
   let navigate = useNavigate(); 
   let path = `/chordprogressions`; 
   const [user, setUser] = useState<User>({
@@ -31,10 +35,10 @@ export const LoginForm: React.FC = () => {
     };
     try {
       const response = await axios.post(`${API_URL}/login`, loginPayload);
-      console.log(response.data);
       const data = response.data;
       const token = data["token"]
       localStorage.setItem('token', token)
+      setLoggedIn(true)
     } catch (error) {
       console.error(error);
     }

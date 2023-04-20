@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import { Container, Row, Col, Image, Button, Stack } from 'react-bootstrap';
 import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 import { API_URL } from '../api/constants';
@@ -37,6 +37,7 @@ import {jwtGet} from "../api/client";
         return chordDegrees.map(degree => scale.chords[degree - 1])
       }
     }, [chordProgression])
+
     const nextPage = () => {
       let path = `/chordprogressions`; 
       navigate(path);
@@ -47,19 +48,18 @@ import {jwtGet} from "../api/client";
     return (
       <>
       <Container>
-        <Row>
           {chords && chords.map((chord, index) => (
-            <Col key={index} xs={12} sm={6} md={4}>
-              <Image src={`/chords/${chord.pitch}${!!chord.sharp ? 'Sharp' : ''}_${chord.chordQuality}.png`} />
+              <Stack direction="horizontal" gap={3} key={index}>
+              <Image key={index} height="200px" width="250px" src={`/chords/${chord.pitch}${!!chord.sharp ? 'Sharp' : ''}_${chord.chordQuality}.png`} thumbnail />
               <p>{chord.pitch}{chord.sharp ? '#' : ''} {chord.chordQuality}</p>
-              {console.log(chord)}
-            </Col>
+              </Stack>
           ))}
-        </Row>
         { chords && 
         (<><h2>Key: {chordProgression.scale.key.pitch}</h2>
         <h2>Style: {chordProgression.style}</h2>
-        <h3>Songs that utilize this chord progression</h3></>
+        <h3>Songs that utilize this chord progression:</h3>
+
+        </>
         )
   }   
       </Container>
