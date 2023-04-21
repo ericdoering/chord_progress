@@ -116,7 +116,7 @@ export const ChordProgressionForm = () => {
       </Form.Group>
 
       </Stack>
-      <Button variant="primary" type="submit">
+      <Button variant="success" size="lg" type="submit">
         GENERATE CHORD PROGRESSION
       </Button>
       </Form>

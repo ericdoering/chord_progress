@@ -79,7 +79,7 @@ import { hookTheory } from "../api/hooktheory";
         )
   }   
       </Container>
-      <Button onClick={nextPage}>
+      <Button variant="success" size="lg" onClick={nextPage}>
           Return
       </Button>
       </>

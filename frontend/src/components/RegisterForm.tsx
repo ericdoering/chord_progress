@@ -3,6 +3,7 @@ import { Form, Button, Stack } from "react-bootstrap";
 import axios from "axios";
 import { API_URL } from "../api/constants";
 import { useNavigate } from "react-router-dom";
+import ".././App.css"
 
 interface User {
   firstName: string;
@@ -106,7 +107,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = (props) => {
       </Form.Group>
       </Stack>
         <Stack direction="horizontal" gap={1} className="justify-content-center">
-              <Button type="submit" variant="primary">Register</Button>
+              <Button variant="success" size="lg" type="submit">Register</Button>
         </Stack>
     </Form>
   );

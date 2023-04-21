@@ -30,7 +30,7 @@ function ChordProgressions(props: ChordProgressionProps) {
         </Card.Text>
       </Card.Body>
       <Card.Footer>
-      <Button color="primary" className="px-4"
+      <Button variant="success" size="lg" className="px-4"
             onClick={routeChange}
               >
               Create chord progression

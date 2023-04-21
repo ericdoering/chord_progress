@@ -73,7 +73,7 @@ export const LoginForm: React.FC<LoginFormProps> = (props: LoginFormProps) => {
       </Form.Group>
       </Stack>
       <Stack direction="horizontal" gap={1} className="justify-content-center">
-              <Button type="submit" variant="primary">Login</Button>
+              <Button type="submit" variant="success" size="lg">Login</Button>
         </Stack>
     </Form>
   );
