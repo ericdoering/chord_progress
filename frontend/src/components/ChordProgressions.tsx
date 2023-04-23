@@ -10,7 +10,7 @@ interface ChordProgressionProps {
 }
 function ChordProgressions(props: ChordProgressionProps) {
   const {user} = props;
-  console.log(user)
+  
   let navigate = useNavigate(); 
   const routeChange = () =>{ 
     let path = `/chordprogressionadd`; 

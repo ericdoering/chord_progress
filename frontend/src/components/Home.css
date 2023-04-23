@@ -19,7 +19,7 @@
 
 .fade-in {
     opacity: 0;
-    transition: opacity 2s ease-in-out;
+    transition: opacity 3s ease-in-out;
   }
   
   .fade-in.show {
@@ -33,5 +33,15 @@
   }
   
   .text-in.show {
+    opacity: 1;
+  }
+
+  .final-in {
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    transition-delay: 4s;
+  }
+  
+  .final-in.show {
     opacity: 1;
   }

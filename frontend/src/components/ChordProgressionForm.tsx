@@ -57,6 +57,7 @@ export const ChordProgressionForm = () => {
         style: selectedOption2?.value
       },
     };
+    if(selectedOption1 && selectedOption2){
     try {
       const response = await jwtPost(`chordProgressions/add`, chordProgressionPayload);
       console.log(response.data);
@@ -64,19 +65,33 @@ export const ChordProgressionForm = () => {
       console.error(error);
     }
     navigate(path);
+  }
 
   };
 
+  let returnPath = `/chordProgressions`
+
+  const handleReturnClick = () => {
+    navigate(returnPath)
+}
 
 
 
   return (
+    <Stack className="align-items-center text-align-center">
+      <Button className="mt-5" variant="success" size="sm" onClick={handleReturnClick}>
+        Return
+      </Button>
+    <h1 className="m-5">Create Chord Progression</h1>
     <Form onSubmit={handleSubmit}>
+    <Button className="mb-5" variant="success" size="lg" type="submit">
+        GENERATE CHORD PROGRESSION
+      </Button>
     <Stack direction="horizontal"  className="md-5 justify-content-center">
       <Form.Group controlId="formOption1">
         <Form.Label>Musical Key</Form.Label>
-        <Dropdown>
-          <Dropdown.Toggle variant="primary" id="dropdown-option1">
+        <Dropdown className="me-5">
+          <Dropdown.Toggle variant="success" id="dropdown-option1">
             {selectedOption1?.label ?? 'Select an option'}
           </Dropdown.Toggle>
 
@@ -97,7 +112,7 @@ export const ChordProgressionForm = () => {
       <Form.Group controlId="formOption2">
         <Form.Label>Style/Genre</Form.Label>
         <Dropdown>
-          <Dropdown.Toggle variant="primary" id="dropdown-option2">
+          <Dropdown.Toggle variant="success" id="dropdown-option2">
             {selectedOption2?.label ?? 'Select an option'}
           </Dropdown.Toggle>
 
@@ -114,12 +129,9 @@ export const ChordProgressionForm = () => {
           </Dropdown.Menu>
         </Dropdown>
       </Form.Group>
-
       </Stack>
-      <Button variant="success" size="lg" type="submit">
-        GENERATE CHORD PROGRESSION
-      </Button>
       </Form>
+    </Stack>
     )
 };
          

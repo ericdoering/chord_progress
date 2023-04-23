@@ -40,7 +40,6 @@ function App() {
       // @ts-ignore
       const id = decodedToken["id"]
       const response = await axios.get(`${API_URL}/user/${id}`);
-      console.log('RESPONSE', response, response.data)
       if (response.status == 200) {
         setUser(response.data)
       }
@@ -65,7 +64,7 @@ function App() {
       <Navbar loggedIn={loggedIn} logout={logout}/>
         <Container className="my-4">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home loggedIn={loggedIn}/>} />
             <Route path="/chordprogressions" element={<ChordProgressions user={user}/>} />
             <Route path="/chordprogressionadd" element={<ChordProgressionForm />} />
             <Route path="/chordprogressiondetail/:id" element={<ChordProgressionDetail />} />

@@ -5,10 +5,19 @@ import axios from 'axios';
 import { API_URL } from '../api/constants';
 import {jwtGet} from "../api/client";
 import { hookTheory } from "../api/hooktheory";
+import { Console } from "console";
 
+
+type songAPI = {
+  artist: string,
+  song: string, 
+  section: string
+  url: string
+}
 
   export const ChordProgressionDetail: React.FC = () => {
     const { id } = useParams()
+    const [relatedSongs, setRelatedSongs] = useState<songAPI[]  | null | undefined>(null);
     const [chordProgression, setChordProgression] = useState(undefined);
     const [isLoading, setIsLoading] = useState(false);
     let navigate = useNavigate(); 
@@ -29,8 +38,6 @@ import { hookTheory } from "../api/hooktheory";
       if (!(chordProgression || isLoading)) getChordProgression()
     }, [])
 
-
-
     const chords = useMemo(() => {
       if (chordProgression) {
         const {chordDegrees, scale} = chordProgression;
@@ -40,25 +47,26 @@ import { hookTheory } from "../api/hooktheory";
 
 
 
+    useEffect(() => {
+      if (chordProgression){
+      async function getData() {
+        const data = await hookTheory(chordProgression);
+        setRelatedSongs(data);
+      }
+      getData();
+    };
+
+    }, [chordProgression])
+
+
     const nextPage = () => {
       let path = `/chordprogressions`; 
       navigate(path);
       };
-
-      type ChordProgression = {
-        chordDegrees?:[]
-        scale?:{}
-        style?: string;
-        }
-
-    function songsWithChords<ChordProgression>() {
-      // console.log(chordProgression?.scaleDegrees)
-    };
-
-    songsWithChords();
-
     
 
+
+    
       
     return (
       <>
@@ -73,6 +81,10 @@ import { hookTheory } from "../api/hooktheory";
         (<><h2>Key: {chordProgression.scale.key.pitch}</h2>
         <h2>Style: {chordProgression.style}</h2>
         <h3>Songs that utilize this chord progression:</h3>
+        <div>
+          {relatedSongs ? relatedSongs.map(song => {
+          return <ul>{song.song}</ul>;
+        }) : null}</div>
 
 
         </>

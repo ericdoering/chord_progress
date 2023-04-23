@@ -4,17 +4,21 @@ import image from "../assets/Chord_Progress_Logo.png";
 import "./Home.css";
 import useSound from "use-sound";
 import homeSound from "../assets/audio/HomeSound.mp3";
+import { useNavigate } from 'react-router-dom';
 
 
-function Home(){
+function Home(props:boolean){
+    const { loggedIn } = props
+    let navigate = useNavigate(); 
+    let pathRegister = `/register`;
+    let pathLogin = `/login`;
     const [showStack, setShowStack] = useState<boolean>(false);
     const [pulse, setPulse] = useState<boolean>(false);
     const [showText, setShowText] = useState<boolean>(false);
     const [playbackRate, setPlaybackRate] = useState(1);
+   
     const [play] = useSound(homeSound, {
       playbackRate,
-      // `interrupt` ensures that if the sound starts again before it's
-      // ended, it will truncate it. Otherwise, the sound can overlap.
       interrupt: true,
     });
     let clicked = true
@@ -30,8 +34,7 @@ function Home(){
         let timeout: NodeJS.Timeout;
         if (showText) {
           timeout = setTimeout(() => {
-            // Don't set showText to false
-          }, 11000); // Show text after 11 seconds
+          }, 11000);
         }
         return () => clearTimeout(timeout);
       }, [showText]);
@@ -45,21 +48,35 @@ function Home(){
       play();
       clicked = false;
     };
+
+    const handleRegisterClick = () => {
+        navigate(pathRegister)
+    }
+
+    const handleLoginClick = () => {
+        navigate(pathLogin)
+    }
+
     return (
         <>
-        <Stack className="align-items-center bold">
+        <Stack className="align-items-center bold text-align-center">
             <h1 className="m-4">WELCOME TO</h1>
             <Image onClick={handleImageClick} className={pulse ? 'pulse' : ''} src={image} height="300px" width="300px" alt="Logo" rounded></Image>
             {pulse ? null : <h6>(click me)</h6>}
             <h3 className="mt-5">THE CHORD PROGRESSION LEARNING TOOL AND GENERATOR</h3>
+            {!loggedIn && <>
             <Stack className={`fade-in ${showStack ? 'show' : ''}`}>
-                <Button className="m-2" variant="success" size="lg" >Register</Button>
-                <Button className="m-2" variant="success" size="lg" >Login</Button>
+                <Button onClick={handleRegisterClick} className="m-2" variant="success" size="lg" >Register</Button>
+                <Button onClick={handleLoginClick} className="m-2" variant="success" size="lg" >Login</Button>
             </Stack>
-            <Stack className={`text-in ${showText ? 'show' : ''}`}>
-                <h1>This Text will then appear</h1>
+            <Stack className={`text-in ${showText ? 'show' : ''} align-items-center`}>
+                <h4 className="text-muted m-3">New to music theory and chord progressions?</h4>
             </Stack>
+            <Stack className={`final-in ${showText ? 'show' : ''} align-items-center`}>
+                <h5 className="text-muted m-2">No problem! Register an account and we will help you get started!</h5>
             </Stack>
+            </>}
+        </Stack>
         </>
     )
 }

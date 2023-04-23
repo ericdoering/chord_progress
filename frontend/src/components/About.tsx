@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import useSound from 'use-sound';
-import { Card, Button, Alert } from "react-bootstrap";
+import { Card, Button, Alert, Stack } from "react-bootstrap";
 import Beatles from "../assets/Beatles.png";
 import Whitney from "../assets/Whitney.png";
 import keyOfC from "../assets/keyOfC.png";
+import playingGuitar from "../assets/playing_guitar.png"
 import progressionExample from "../assets/audio/progressionExample.mp3";
 import { useDisplayText } from "../../utilities/loading";
+import "./About.css"
 
 
 function About(){
-
+    const [showStack, setShowStack] = useState<boolean>(false);
     const [displayText, showText] = useDisplayText();
 
     const [playbackRate, setPlaybackRate] = useState(1);
@@ -21,7 +23,8 @@ function About(){
     });
   
     const handleClick = () => {
-    showText()
+    setShowStack(true);
+    showText();
       setPlaybackRate(playbackRate);
       play();
     };
@@ -30,7 +33,7 @@ function About(){
         <>
             <h1>Welcome to Chord Progress</h1>
                 <Card className="border d-flex align-items-center justify-content-center">
-                <Card.Img variant="top" src={Beatles} style={{ width: "40rem", height: "20rem" }} />
+                <Card.Img className="mt-4" variant="top" src={Beatles} style={{ width: "40rem", height: "20rem" }}/>
                 <Card.Body>
                     <Card.Title>What is a chord?</Card.Title>
                     <Card.Text>
@@ -49,12 +52,12 @@ function About(){
                 </Card>
                 <hr></hr>
                 <Card className="border d-flex align-items-center justify-content-center">
-                <Card.Img variant="top" src={Whitney} style={{ width: "35rem", height: "20rem" }} />
+                <Card.Img className="mt-4" variant="top" src={Whitney} style={{ width: "35rem", height: "20rem" }} />
                 <Card.Body>
                     <Card.Title>What is a chord progression?</Card.Title>
                     <Card.Text>
                     So chords as we have read are a combination of notes. Imagine now that chord progressions
-                    are the next step in which we now combine the chords
+                    are the next step in which we now combine the chords.
                     A chord progression is a sequence of chords played one after another in a piece of music. 
                     Think of it as a series of chords that create a musical story, 
                     moving the listener from one musical moment to another. 
@@ -69,7 +72,7 @@ function About(){
                 </Card>
                 <hr></hr>
                 <Card className="border d-flex align-items-center justify-content-center">
-                <Card.Img variant="top" src={keyOfC} style={{ width: "60rem", height: "20rem" }} />
+                <Card.Img className="mt-4" variant="top" src={keyOfC} style={{ width: "60rem", height: "20rem" }} />
                 <Card.Body>
                     <Card.Title>How do we build a chord progression?</Card.Title>
                     <Card.Text>
@@ -81,16 +84,21 @@ function About(){
                     we have 8 scale degrees and they are all numbered in succession. For the time being you can ignore why for instance
                     D minor happens to be the "2" chord or why F Major is the "4" chord. Essentially we can pull together any combination
                     of these chords in the scale to create any chord progression we want.
-                    So, in this case if I say "Play a 2-5-1 progression in the key of C", we can see see that 2 in this scale would
+                    So, in this case if we say "Play a 2-5-1 progression in the key of C", we can see see that 2 in this scale would
                     be the D minor chord, 5 in this scale would be the G Major chord, and 1 would be the C Major chord. If we were
                     to pick up an instrument and play D minor, G Major, and C Major we would then be playing that chord progression!
                     </Card.Text>
                 </Card.Body>
                 </Card>
-                <div className="border d-flex flex-column justify-content-center">
-                <Button className="lg d-flex align-items-center justify-content-center" variant="outline-danger" onClick={handleClick}> Listen to the 2-5-1 progression in "C"</Button>
-                {displayText && <p><Alert variant="success">{displayText}</Alert></p>}
+                <Stack className="d-flex flex-column align-items-center">
+                <h5 className="mt-4">Let's hear what that chord progression sounds like on an acoustic guitar...</h5>
+                <Button className="text-center m-5" variant="success sm" onClick={handleClick}> Listen to the 2-5-1 progression in "C"</Button>
+                <div className={`fade-in ${showStack ? 'show' : ''}`}>
+                    {displayText && <Card.Img className="mt-4 rounded" variant="top" src={playingGuitar} style={{ width: "15rem", height: "10rem" }} />}
                 </div>
+                <hr></hr>
+                <h2 className="m-5">How can you use this app to build chord progressions?</h2>
+                </Stack>
             </>
       );
 };
