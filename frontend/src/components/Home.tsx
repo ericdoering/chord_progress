@@ -57,12 +57,13 @@ function Home(props:boolean){
         navigate(pathLogin)
     }
 
+
     return (
         <>
         <Stack className="align-items-center bold text-align-center">
             <h1 className="m-4">WELCOME TO</h1>
             <Image onClick={handleImageClick} className={pulse ? 'pulse' : ''} src={image} height="300px" width="300px" alt="Logo" rounded></Image>
-            {pulse ? null : <h6>(click me)</h6>}
+            {pulse ? null : <h6>(click)</h6>}
             <h3 className="mt-5">THE CHORD PROGRESSION LEARNING TOOL AND GENERATOR</h3>
             {!loggedIn && <>
             <Stack className={`fade-in ${showStack ? 'show' : ''}`}>

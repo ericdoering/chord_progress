@@ -84,7 +84,10 @@ router.post("/login", async (req: Request, res: Response) => {
             )
             return res.status(200).send({user, token})
         }
-        else throw new UnauthorizedError();
+        else {
+            return res.status(401).send();
+            // throw new UnauthorizedError()
+        };
     }
     catch (err) {
         return res.status(500).send();

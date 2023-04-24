@@ -4,6 +4,7 @@ import axios from 'axios';
 import { API_URL } from '../api/constants';
 import { useNavigate } from 'react-router-dom';
 import { jwtPost } from '../api/client';
+import writingSong from "../assets/writing_song.png"
 
 type Option = {
   value: string;
@@ -82,14 +83,9 @@ export const ChordProgressionForm = () => {
       <Button className="mt-5" variant="success" size="sm" onClick={handleReturnClick}>
         Return
       </Button>
+      <img className='mt-4 rounded' src={writingSong} width="300rem" height="170rem" />
       <div>
-        <h1 className="m-5" style={{ 
-          border: '5px solid green', 
-          borderRadius: '10px', 
-          padding: '10px'
-        }}>
-          Create Chord Progression
-        </h1>
+        <h1 className="m-4">Create Chord Progression</h1>
       </div>
     <Form onSubmit={handleSubmit}>
     <Button className="mb-5" variant="success" size="lg" type="submit">

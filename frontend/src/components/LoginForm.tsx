@@ -14,6 +14,7 @@ interface LoginFormProps {
 }
 
 export const LoginForm: React.FC<LoginFormProps> = (props: LoginFormProps) => {
+  const [error, setError] = useState('');
   const {setLoggedIn} = props;
   let navigate = useNavigate(); 
   let path = `/chordprogressions`; 
@@ -39,14 +40,21 @@ export const LoginForm: React.FC<LoginFormProps> = (props: LoginFormProps) => {
       const token = data["token"]
       localStorage.setItem('token', token)
       setLoggedIn(true)
-    } catch (error) {
+      navigate(path);
+    } catch (e) {
+      if(e.response.status === 401){
+        setError('Wrong Username or Password')
+      }
       console.error(error);
     }
-    navigate(path);
   };
+
+
+  
 
   return (
     <Form onSubmit={handleSubmit}>
+    {error && <div className="alert alert-danger d-flex flex-column align-items-center" role="alert">{error}</div>}
     <Stack direction="vertical" gap={1} className="justify-content-center">
     <Form.Group className="d-flex flex-column align-items-center mb-4" controlId="formEmail">
         <Form.Label>Email address</Form.Label>

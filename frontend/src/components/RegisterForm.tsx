@@ -56,7 +56,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = (props) => {
   };
 
   return (
-    <Form className="square border" onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Stack direction="vertical" gap={1} className="justify-content-center">
       <Form.Group className="d-flex flex-column align-items-center mb-4" controlId="formFirstName">
         <Form.Label>First Name</Form.Label>
