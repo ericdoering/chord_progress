@@ -26,8 +26,8 @@ export function ChordProgressionList() {
   ));
 
   return (
-    <div>
-      <ul>{progressionComponents}</ul>
+    <div className="mt-3">
+      <ul className='m-3' style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", margin: "5px"}}>{progressionComponents}</ul>
     </div>
   );
 }

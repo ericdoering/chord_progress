@@ -82,7 +82,15 @@ export const ChordProgressionForm = () => {
       <Button className="mt-5" variant="success" size="sm" onClick={handleReturnClick}>
         Return
       </Button>
-    <h1 className="m-5">Create Chord Progression</h1>
+      <div>
+        <h1 className="m-5" style={{ 
+          border: '5px solid green', 
+          borderRadius: '10px', 
+          padding: '10px'
+        }}>
+          Create Chord Progression
+        </h1>
+      </div>
     <Form onSubmit={handleSubmit}>
     <Button className="mb-5" variant="success" size="lg" type="submit">
         GENERATE CHORD PROGRESSION
@@ -90,7 +98,7 @@ export const ChordProgressionForm = () => {
     <Stack direction="horizontal"  className="md-5 justify-content-center">
       <Form.Group controlId="formOption1">
         <Form.Label>Musical Key</Form.Label>
-        <Dropdown className="me-5">
+        <Dropdown className="me-5" drop="down">
           <Dropdown.Toggle variant="success" id="dropdown-option1">
             {selectedOption1?.label ?? 'Select an option'}
           </Dropdown.Toggle>
@@ -111,7 +119,7 @@ export const ChordProgressionForm = () => {
 
       <Form.Group controlId="formOption2">
         <Form.Label>Style/Genre</Form.Label>
-        <Dropdown>
+        <Dropdown drop="down">
           <Dropdown.Toggle variant="success" id="dropdown-option2">
             {selectedOption2?.label ?? 'Select an option'}
           </Dropdown.Toggle>

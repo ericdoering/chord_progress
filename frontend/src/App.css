@@ -1,12 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Mulish:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Lexend+Deca&family=Mulish:wght@500&display=swap');
 
+
 .app {
     /* font-family: 'Amatic SC', cursive; */
     font-family: 'Lexend Deca', sans-serif;
     background-color: rgb(237, 223, 156);
     height: 300rem;
-};
+    position: relative;
+    opacity: 0.99;
+  }
+  
+  .app::before{
+    content: ''; /* create a new empty layer */
+    position: absolute; /* position it absolutely inside the .app container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("./assets/chord_background.png");
+    z-index: -1;
+    opacity: 0.1; /* adjust the opacity as needed */
+  }
 
 .button {
     background-color: rgb(10, 87, 10);

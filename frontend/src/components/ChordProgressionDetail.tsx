@@ -6,6 +6,7 @@ import { API_URL } from '../api/constants';
 import {jwtGet} from "../api/client";
 import { hookTheory } from "../api/hooktheory";
 import { Console } from "console";
+import "./ChordProgressionDetail.css"
 
 
 type songAPI = {
@@ -50,8 +51,9 @@ type songAPI = {
     useEffect(() => {
       if (chordProgression){
       async function getData() {
-        const data = await hookTheory(chordProgression);
-        setRelatedSongs(data);
+        const data = await hookTheory(chordProgression.chordDegrees);
+        const displayedData = data.slice(0,4)
+        setRelatedSongs(displayedData);
       }
       getData();
     };
@@ -70,27 +72,33 @@ type songAPI = {
       
     return (
       <>
-      <Container>
-          {chords && chords.map((chord, index) => (
-              <Stack direction="horizontal" gap={3} key={index}>
-              <Image key={index} height="200px" width="250px" src={`/chords/${chord.pitch}${!!chord.sharp ? 'Sharp' : ''}_${chord.chordQuality}.png`} thumbnail />
-              <p>{chord.pitch}{chord.sharp ? '#' : ''} {chord.chordQuality}</p>
-              </Stack>
-          ))}
+        <Container>
+          <Row className="mt-5">
+            <Col style={{ display: "flex", flexWrap: "nowrap", alignItems: "center", justifyContent: "space-between" }}>
+              {chords &&
+                chords.map((chord, index) => (
+                  <div key={index}>
+                    <Image height="200px" width="250px" src={`/chords/${chord.pitch}${!!chord.sharp ? 'Sharp' : ''}_${chord.chordQuality}.png`} thumbnail />
+                    <p>{chord.pitch}{chord.sharp ? '#' : ''} {chord.chordQuality}</p>
+                  </div>
+                ))
+              }
+            </Col>
+          </Row>
+        </Container>
+        <Stack className="align-items-center text-align-center">
         { chords && 
-        (<><h2>Key: {chordProgression.scale.key.pitch}</h2>
-        <h2>Style: {chordProgression.style}</h2>
-        <h3>Songs that utilize this chord progression:</h3>
-        <div>
-          {relatedSongs ? relatedSongs.map(song => {
-          return <ul>{song.song}</ul>;
-        }) : null}</div>
-
-
+          (<><h2>Key: {chordProgression.scale.key.pitch}</h2>
+          <h2 className="mt-2">Style: {chordProgression.style}</h2>
+          <h3 className="mt-2">Songs that utilize this chord progression:</h3>
+          <div>
+            {relatedSongs ? relatedSongs.map(song => {
+            return <ol>{song.song} by {song.artist} in the {song.section}</ol>;
+          }) : null}</div>
         </>
         )
-  }   
-      </Container>
+      }   
+      </Stack>
       <Button variant="success" size="lg" onClick={nextPage}>
           Return
       </Button>
