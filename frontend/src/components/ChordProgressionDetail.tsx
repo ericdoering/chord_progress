@@ -61,14 +61,13 @@ type songAPI = {
     }, [chordProgression])
 
 
+
     const nextPage = () => {
       let path = `/chordprogressions`; 
       navigate(path);
       };
     
 
-
-    
       
     return (
       <>
@@ -87,15 +86,16 @@ type songAPI = {
           </Row>
         </Container>
         <Stack className="align-items-center text-align-center">
-        { chords && 
-          (<><h3 className="mt-5">Key: {chordProgression.scale.key.pitch}</h3>
-          <h3 className="mt-2">Style: {chordProgression.style}</h3>
-          <h5 className="mt-5">Songs that utilize this chord progression:</h5>
-          <div>
-            {relatedSongs ? relatedSongs.map(song => {
-            return <ol>{song.song} by {song.artist} in the {song.section}</ol>;
-          }) : null}</div>
-        </>
+        { chords && (
+            <>
+              <h3 className="mt-5">Key: {chordProgression.scale.key.pitch}</h3>
+                <h3 className="mt-2">Style: {chordProgression.style}</h3>
+                  <h5 className="mt-5">Songs that utilize this chord progression:</h5>
+                    <div>
+                  {relatedSongs ? relatedSongs.map(song => {
+                  return <ol>{song.song} by {song.artist} in the {song.section}</ol>;
+                }) : null}</div>
+            </>
         )
       }   
       </Stack>
