@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Dropdown, Stack, Button } from 'react-bootstrap';
 import axios from 'axios';
 import { API_URL } from '../api/constants';
 import { useNavigate } from 'react-router-dom';
-import { jwtPost } from '../api/client';
+import { jwtPost, jwtGet } from '../api/client';
 import writingSong from "../assets/writing_song.png"
+import { ChordProgression } from './ChordProgression';
 
 type Option = {
   value: string;
@@ -39,10 +40,6 @@ export const ChordProgressionForm = () => {
   const [selectedOption2, setSelectedOption2] = useState<Option | null>(null);
 
   let navigate = useNavigate(); 
-  let path = `/chordprogressions`;
-
-  
-
 
   const handleOption1Change = (option: Option | null) => {
     setSelectedOption1(option);
@@ -64,16 +61,15 @@ export const ChordProgressionForm = () => {
     if(selectedOption1 && selectedOption2){
     try {
       const response = await jwtPost(`chordProgressions/add`, chordProgressionPayload);
-      console.log(response.data);
+      navigate(`/chordprogressiondetail/${response.data.chordProgressions.slice(-1)[0]._id}`);
+
+
     } catch (error) {
       console.error(error);
     }
-    navigate(path);
   }
-
+  // navigate(`/chordprogressiondetail/${chordProgressionId}`);
   };
-
-  
 
   let returnPath = `/chordProgressions`
 

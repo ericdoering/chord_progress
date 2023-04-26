@@ -39,17 +39,18 @@ router.get("/chordProgressions", async (req: Request, res: Response) => {
   
   
   
-  router.post("/chordProgressions/add", async (req: Request, res: Response) => {
-    const progression = req.body.progression
-    const userData = parseJwt(req)
-    let update = await User.updateOne({"_id": userData.id},
-     { "$push": { "chordProgressions": progression} },
-      { "new": true, "upsert": true })
-  
-      let user = req.body.user
-      return res.status(201).send(update);
-  });
-
+    router.post("/chordProgressions/add", async (req: Request, res: Response) => {
+      const progression = req.body.progression
+      const userData = parseJwt(req)
+      await User.updateOne({"_id": userData.id}, { "$push": { "chordProgressions": progression } })
+    
+      const updatedUser = await User.findOne({ "_id": userData.id })
+      if (!updatedUser) {
+        return res.status(404).send({ error: "User not found" })
+      }
+    
+      return res.status(201).send(updatedUser)
+    })
 
 
 
