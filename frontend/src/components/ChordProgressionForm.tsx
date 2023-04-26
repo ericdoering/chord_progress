@@ -39,7 +39,10 @@ export const ChordProgressionForm = () => {
   const [selectedOption2, setSelectedOption2] = useState<Option | null>(null);
 
   let navigate = useNavigate(); 
-  let path = `/chordprogressions`; 
+  let path = `/chordprogressions`;
+
+  
+
 
   const handleOption1Change = (option: Option | null) => {
     setSelectedOption1(option);
@@ -69,6 +72,8 @@ export const ChordProgressionForm = () => {
   }
 
   };
+
+  
 
   let returnPath = `/chordProgressions`
 

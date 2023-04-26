@@ -24,39 +24,47 @@ router.get("/chordProgressions", async (req: Request, res: Response) => {
 
 
 
-router.get("/chordProgression/:progression_id", async (req: Request, res: Response) => {
-  const userData = parseJwt(req)
-  let user = await User.findOne({"_id": userData.id});
-  let chordProgression = user.chordProgressions.find((progression: { _id: string; }) => progression._id.valueOf() === req.params.progression_id)
-  const {key, style} = chordProgression;
-  // @ts-ignore
-  console.log(key, style)
-  // @ts-ignore
-  let chordProgressionResult = new ChordProgression(scales[key], styles[style].chordDegrees, styles[style].name)
-  return res.status(200).send(chordProgressionResult);
+  router.get("/chordProgression/:progression_id", async (req: Request, res: Response) => {
+    const userData = parseJwt(req)
+    let user = await User.findOne({"_id": userData.id});
+    let chordProgression = user.chordProgressions.find((progression: { _id: string; }) => progression._id.valueOf() === req.params.progression_id)
+    const {key, style} = chordProgression;
+    // @ts-ignore
+    console.log(key, style)
+    // @ts-ignore
+    let chordProgressionResult = new ChordProgression(scales[key], styles[style].chordDegrees, styles[style].name)
+    return res.status(200).send(chordProgressionResult);
+    });
+  
+  
+  
+  
+  router.post("/chordProgressions/add", async (req: Request, res: Response) => {
+    const progression = req.body.progression
+    const userData = parseJwt(req)
+    let update = await User.updateOne({"_id": userData.id},
+     { "$push": { "chordProgressions": progression} },
+      { "new": true, "upsert": true })
+  
+      let user = req.body.user
+      return res.status(201).send(update);
   });
 
 
 
 
-router.post("/chordProgressions/add", async (req: Request, res: Response) => {
-  const progression = req.body.progression
-  const userData = parseJwt(req)
-  let update = await User.updateOne({"_id": userData.id},
-   { "$push": { "chordProgressions": progression} },
-    { "new": true, "upsert": true })
 
-    let user = req.body.user
-    return res.status(201).send(update);
+router.delete("/chordProgressions/delete/:id", async (req: Request, res: Response) => {
+  const progressionId = req.params.id;
+  const userData = parseJwt(req);
+  
+  let update = await User.updateOne({"_id": userData.id},
+    { "$pull": { "chordProgressions": { "_id": progressionId } } },
+    { "new": true })
+
+  return res.status(200).send(update);
 });
 
-
-
-
-
-router.post("/chordProgressions/:id/delete", ensureLoggedIn, async (req: Request, res: Response) => {
-    // Deletes a specific user chord progression
-  });
 
 router.patch("/chordProgressions/:id/edit", ensureLoggedIn, async (req: Request, res: Response) => {
     // Deletes a specific user chord progression
