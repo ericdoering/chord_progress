@@ -90,10 +90,10 @@ type songAPI = {
             <>
               <h3 className="mt-5">Key: {chordProgression.scale.key.pitch}</h3>
                 <h3 className="mt-2">Style: {chordProgression.style}</h3>
-                  <h5 className="mt-5">Songs that utilize this chord progression:</h5>
+                  <h5 className="mt-5 mb-4"><u>Songs that utilize this chord progression:</u></h5>
                     <div>
                   {relatedSongs ? relatedSongs.map(song => {
-                  return <ol>{song.song} by {song.artist} in the {song.section}</ol>;
+                  return <ol><small>"{song.song}" by {song.artist} in the {song.section}</small></ol>;
                 }) : null}</div>
             </>
         )
