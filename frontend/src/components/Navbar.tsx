@@ -1,7 +1,6 @@
 import { Image, Container, Nav, Navbar as NavbarBs } from "react-bootstrap"
 import { NavLink, Link} from "react-router-dom";
- import { useEffect } from "react";
- import Logo from "../assets/Chord_Progress_Mascot.png";
+import Logo from "../assets/Chord_Progress_Mascot.png";
 
  interface NavbarProps {
     loggedIn: boolean

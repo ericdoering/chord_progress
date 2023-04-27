@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Form, Dropdown, Stack, Button } from 'react-bootstrap';
-import axios from 'axios';
-import { API_URL } from '../api/constants';
 import { useNavigate } from 'react-router-dom';
-import { jwtPost, jwtGet } from '../api/client';
+import { jwtPost } from '../api/client';
 import writingSong from "../assets/writing_song.png"
-import { ChordProgression } from './ChordProgression';
 
 type Option = {
   value: string;
@@ -68,7 +65,7 @@ export const ChordProgressionForm = () => {
       console.error(error);
     }
   }
-  // navigate(`/chordprogressiondetail/${chordProgressionId}`);
+
   };
 
   let returnPath = `/chordProgressions`

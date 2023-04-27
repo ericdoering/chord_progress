@@ -48,7 +48,6 @@ export const RegisterForm: React.FC<RegisterFormProps> = (props) => {
       const token = data["token"]
       localStorage.setItem('token', token)
       setLoggedIn(true)
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }

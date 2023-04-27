@@ -3,7 +3,6 @@ import { ACTIVE_KEY } from "./constants";
 import axios, { AxiosResponse } from 'axios';
 
 
-
 export async function hookTheory(deg:number[]) {
     try {
       const response: AxiosResponse = await axios.get(`https://api.hooktheory.com/v1/trends/songs?cp=${deg.join(",")}&page=2`, {

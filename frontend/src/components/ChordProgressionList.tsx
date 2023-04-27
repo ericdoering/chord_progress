@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { ChordProgression } from './ChordProgression';
-import { API_URL } from '../api/constants';
 import { jwtGet, jwtDelete } from '../api/client';
 import { Button } from 'react-bootstrap';
 
@@ -38,7 +36,7 @@ export function ChordProgressionList() {
   ));
 
   return (
-    <div  className="mt-3">
+    <div className="mt-3">
       <ul style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", margin: "5px", listStyleType: "none"}}>
         {progressionComponents}
       </ul>

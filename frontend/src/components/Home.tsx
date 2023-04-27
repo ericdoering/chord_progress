@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Stack, Image, Card, Button } from "react-bootstrap";
+import { Stack, Image, Button } from "react-bootstrap";
 import image from "../assets/Chord_Progress_Logo.png";
 import "./Home.css";
 import useSound from "use-sound";

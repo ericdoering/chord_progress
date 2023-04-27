@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useSound from 'use-sound';
-import { Card, Button, Alert, Stack, Col, ListGroup, Row, Tab } from "react-bootstrap";
+import { Card, Button, Stack, Col, ListGroup, Row, Tab } from "react-bootstrap";
 import Beatles from "../assets/Beatles.png";
 import Whitney from "../assets/Whitney.png";
 import keyOfC from "../assets/keyOfC.png";
@@ -15,7 +15,6 @@ import "./About.css"
 function About(){
     const [showStack, setShowStack] = useState<boolean>(false);
     const [displayText, showText] = useDisplayText();
-
     const [playbackRate, setPlaybackRate] = useState(1);
     const [play] = useSound(progressionExample, {
       playbackRate,
@@ -25,8 +24,8 @@ function About(){
     const handleClick = () => {
     setShowStack(true);
     showText();
-      setPlaybackRate(playbackRate);
-      play();
+    setPlaybackRate(playbackRate);
+    play();
     };
 
     return (
@@ -194,6 +193,6 @@ function About(){
                 </Card>
                 </>
             );
-};
+        };
 
 export default About;

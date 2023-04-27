@@ -4,14 +4,11 @@ import jwt from "jsonwebtoken";
 import { SECRET_KEY } from "../middleware/config"
 import { User } from "../models/models";
 import { BadRequestError, NotFoundError, UnauthorizedError } from "../middleware/errors";
-import { ensureLoggedIn } from "../middleware/authentication";
-import { createToken } from "../middleware/token"
 import { BCRYPT_WORK_FACTOR } from "../middleware/config";
-const cookieParser = require("cookie-parser")
 const bcrypt = require("bcrypt");
 const router = express.Router();
 dotenv.config();
-router.use(cookieParser());
+
 
 
 

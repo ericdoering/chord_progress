@@ -1,7 +1,7 @@
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Container } from "react-bootstrap";
-import { Routes, Route, Navigate, useParams, useNavigate, useMatch} from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate, useMatch} from "react-router-dom";
 import Home from "./components/Home";
 import ChordProgressions from "./components/ChordProgressions";
 import About from "./components/About";
@@ -13,9 +13,8 @@ import "../../frontend/src/App.css"
 import axios from "axios";
 
 import { ChordProgressionForm } from "./components/ChordProgressionForm";
-import { ChordProgression } from "./components/ChordProgression";
 import jwt_decode, { JwtPayload } from 'jwt-decode';
-import { useState, createContext, useContext, useEffect } from "react";
+import { useState, createContext, useEffect } from "react";
 import { API_URL } from "./api/constants";
 
 const UserContext = createContext(undefined);
@@ -50,13 +49,13 @@ function App() {
 
   useEffect(() => {
     if(!loggedIn && !homeMatch) {
-      console.log('navigate called')
       navigate('/')
     }
     else if(loggedIn && !user) {
       getUser()
     }
   }, [loggedIn, user])
+
   return (
     <>
     <UserContext.Provider value={user}>

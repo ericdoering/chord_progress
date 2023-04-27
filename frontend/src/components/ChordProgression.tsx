@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Card, Stack } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -8,8 +8,7 @@ interface Props {
     key: string;
     _id: string
   };
-}
-
+};
 
 export const ChordProgression: React.FC<Props> = ({ chordProgression }) => {
 

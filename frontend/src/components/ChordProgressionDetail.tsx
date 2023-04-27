@@ -1,11 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Container, Row, Col, Image, Button, Stack } from 'react-bootstrap';
 import { useNavigate, useParams } from "react-router-dom";
-import axios from 'axios';
-import { API_URL } from '../api/constants';
 import {jwtGet} from "../api/client";
 import { hookTheory } from "../api/hooktheory";
-import { Console } from "console";
 import "./ChordProgressionDetail.css"
 
 
