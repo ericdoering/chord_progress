@@ -3,6 +3,7 @@ import { Form, Dropdown, Stack, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { jwtPost } from '../api/client';
 import writingSong from "../assets/writing_song.png"
+import { AxiosResponse } from 'axios';
 
 type Option = {
   value: string;
@@ -57,7 +58,7 @@ export const ChordProgressionForm = () => {
     };
     if(selectedOption1 && selectedOption2){
     try {
-      const response = await jwtPost(`chordProgressions/add`, chordProgressionPayload);
+      const response : AxiosResponse = await jwtPost(`chordProgressions/add`, chordProgressionPayload);
       navigate(`/chordprogressiondetail/${response.data.chordProgressions.slice(-1)[0]._id}`);
 
 

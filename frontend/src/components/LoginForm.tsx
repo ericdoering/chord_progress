@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Stack } from 'react-bootstrap';
 import { API_URL } from '../api/constants';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 interface User {
@@ -41,7 +41,7 @@ export const LoginForm: React.FC<LoginFormProps> = (props: LoginFormProps) => {
       localStorage.setItem('token', token)
       setLoggedIn(true)
       navigate(path);
-    } catch (e) {
+    } catch (e: any) {
       if(e.response.status === 401){
         setError('Wrong Username or Password')
       }

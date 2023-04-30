@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {jwtGet} from "../api/client";
 import { hookTheory } from "../api/hooktheory";
 import "./ChordProgressionDetail.css"
+import { AxiosResponse } from "axios";
 
 
 type songAPI = {
@@ -13,10 +14,28 @@ type songAPI = {
   url: string
 }
 
+type chord = {
+  pitch: string,
+  sharp: boolean,
+  chordQuality: string
+}
+
+type scale = {
+  chords: chord[]
+  pitch: string
+}
+
+type progressionDetails = {
+  chordDegrees: number[],
+  scale: scale
+  style: string
+}
+
+
   export const ChordProgressionDetail: React.FC = () => {
     const { id } = useParams()
     const [relatedSongs, setRelatedSongs] = useState<songAPI[]  | null | undefined>(null);
-    const [chordProgression, setChordProgression] = useState(undefined);
+    const [chordProgression, setChordProgression] = useState<progressionDetails | null >(null);
     const [isLoading, setIsLoading] = useState(false);
     let navigate = useNavigate(); 
 
@@ -24,7 +43,7 @@ type songAPI = {
       async function getChordProgression() {
         try {
           setIsLoading(true)
-          const response = await jwtGet(`chordProgression/${id}`);
+          const response : AxiosResponse = await jwtGet(`chordProgression/${id}`);
           
           setChordProgression(response.data)
           setIsLoading(false)
@@ -46,8 +65,9 @@ type songAPI = {
 
 
     useEffect(() => {
-      if (chordProgression){
+      if (chordProgression) {
       async function getData() {
+        if (!chordProgression) return;
         const data = await hookTheory(chordProgression.chordDegrees);
         const displayedData = data.slice(0,4)
         setRelatedSongs(displayedData);
@@ -83,9 +103,9 @@ type songAPI = {
           </Row>
         </Container>
         <Stack className="align-items-center text-align-center">
-        { chords && (
+        { chords && chordProgression && (
             <>
-              <h3 className="mt-5">Key: {chordProgression.scale.key.pitch}</h3>
+              <h3 className="mt-5">Key: {chordProgression.scale.pitch}</h3>
                 <h3 className="mt-2">Style: {chordProgression.style}</h3>
                   <h5 className="mt-5 mb-4"><u>Songs that utilize this chord progression:</u></h5>
                     <div>
