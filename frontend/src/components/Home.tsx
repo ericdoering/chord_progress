@@ -6,8 +6,11 @@ import useSound from "use-sound";
 import homeSound from "../assets/audio/HomeSound.mp3";
 import { useNavigate } from 'react-router-dom';
 
+interface HomeProps {
+  loggedIn: boolean
+}
 
-function Home(props:boolean){
+function Home(props:HomeProps){
     const { loggedIn } = props
     let navigate = useNavigate(); 
     let pathRegister = `/register`;

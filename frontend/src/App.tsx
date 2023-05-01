@@ -64,7 +64,7 @@ function App() {
         <Container className="my-4">
           <Routes>
             <Route path="/" element={<Home loggedIn={loggedIn}/>} />
-            <Route path="/chordprogressions" element={<ChordProgressions user={user}/>} />
+            <Route path="/chordprogressions" element={<ChordProgressions user={user!}/>} />
             <Route path="/chordprogressionadd" element={<ChordProgressionForm />} />
             <Route path="/chordprogressiondetail/:id" element={<ChordProgressionDetail />} />
             <Route path="/about" element={<About />} />

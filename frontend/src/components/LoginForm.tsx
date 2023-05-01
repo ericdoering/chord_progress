@@ -41,7 +41,7 @@ export const LoginForm: React.FC<LoginFormProps> = (props: LoginFormProps) => {
       localStorage.setItem('token', token)
       setLoggedIn(true)
       navigate(path);
-    } catch (e) {
+    } catch (e: any) {
       if(e.response.status === 401){
         setError('Wrong Username or Password')
       }
