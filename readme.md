@@ -2,8 +2,7 @@
 
 #### By _**Eric Doering**_
 
-#### A full stack appliation that teaches the music
-theory of "chord progressions" and allows users to create their own chord progressions.
+#### A full stack appliation that teaches the music theory of "chord progressions" and allows users to create their own chord progressions.
 
 ## Technologies Used
 
