@@ -18,7 +18,7 @@ interface IUser {
     password: string;
   };
   
-
+// Each user will have a firstName, lastName, email, password, and will default recieve a chordProgression array and MongoDB ID
 const userSchema = new mongoose.Schema(
     {
         firstName: {

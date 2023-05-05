@@ -1,5 +1,7 @@
 import { Pitch } from "./constants";
 
+
+// To define the keys the pitch is required. Some keys are sharp so this must be defined in this model
 export default class Key {
     pitch: Pitch;
     sharp?: boolean;
@@ -10,7 +12,7 @@ export default class Key {
 }
 
 
-
+// We set the key as a pitch and the optional boolean of the key containing a sharp
 const keys = {"A": new Key(Pitch.A), 
               "A#": new Key(Pitch.A, true),
               "B": new Key(Pitch.B),

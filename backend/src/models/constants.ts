@@ -1,3 +1,4 @@
+// setting Pitch which are pure musical tones
 export enum Pitch {
     A = 'A',
     B  = 'B',
@@ -8,12 +9,14 @@ export enum Pitch {
     G = 'G',
 }
 
+// Setting the 3 possible chord qualities that this app will utilize
 export enum ChordQuality {
     MAJOR = 'Major',
     MINOR = 'Minor',
     DIMINISHED = 'Diminished',
 }
 
+// Setting what the next consecutive key is for each key
 export const nextKey = {
     [Pitch.A]: Pitch.B, 
     [Pitch.B]: Pitch.C, 

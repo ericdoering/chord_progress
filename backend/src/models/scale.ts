@@ -2,7 +2,7 @@ import Chord from "./chord";
 import { Pitch, ChordQuality } from "./constants";
 import Key, { keys } from "./key";
 
-
+// Creating the major scale within each of the keys and giving it the correct series of chords for each 
 export default class Scale {
     chords: Chord[]
     key: Key

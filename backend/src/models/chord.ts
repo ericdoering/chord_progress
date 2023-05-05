@@ -1,6 +1,8 @@
 
 import { Pitch, ChordQuality } from "./constants";
 
+
+// The chord instance should contain the pitch, chordQuality, and the optional boolean of being a sharp.
 export default class Chord {
     pitch: Pitch;
     chordQuality: ChordQuality;

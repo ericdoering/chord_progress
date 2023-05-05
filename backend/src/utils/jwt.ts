@@ -7,6 +7,7 @@ export interface UserIDJwtPayload extends jwt.JwtPayload {
     email: string
 };
 
+// ParseJwt method which checks that the user has the jwt within their header by decoding it and comparing it with the SECRET_KEY
 export function parseJwt (request: Request) {
     const authHeader = request.headers && request.headers.authorization;
     if (authHeader) {    

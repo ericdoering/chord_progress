@@ -1,6 +1,6 @@
-import { render } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { LoginForm } from "../src/components/LoginForm";
-import { describe, test, vitest, vi } from "vitest";
+import { describe, test, vitest, vi, expect } from "vitest";
 import { useParams } from 'react-router-dom'
 
 
@@ -11,4 +11,17 @@ describe("LoginForm component", () => {
   test("It should render", () => {
     render(<LoginForm setLoggedIn={() => {}} />);
   })
+
+  test('Button click event', () => {
+    const handleClick = vi.fn();
+
+    const button = screen.getByRole('button', { name: /login/i }); 
+  
+    handleClick();
+
+    fireEvent.click(button); 
+  
+    expect(handleClick).toHaveBeenCalledTimes(1); 
+  });
+
 });

@@ -10,7 +10,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true})) 
 
-
+// Connect to the database before utilizing routes
 connectDB();
 
 app.use(userRouter);

@@ -1,11 +1,13 @@
 import Scale from "./scale";
 
+// Setting the names of each chord style
 enum StyleName {
     BLUES = 'Blues',
     JAZZ = 'Jazz',
     POP = 'Pop'
 }
 
+// The musicStyle class will contain the name, intervals/indexes/chordDegrees
 export default class MusicStyle {
     name: StyleName
     chordDegrees: number[]
