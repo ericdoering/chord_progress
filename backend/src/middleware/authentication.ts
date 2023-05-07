@@ -25,7 +25,7 @@ function ensureLoggedIn(req: Request, res: Response, next: NextFunction) {
     if (!res.locals.user) throw new UnauthorizedError();
     return next();
   } catch (err) {
-    return next(err);
+    return res.status(403).send("Unauthorized")
   }
 };
 
