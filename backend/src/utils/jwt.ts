@@ -13,11 +13,10 @@ export function parseJwt (request: Request) {
         const token = authHeader.replace(/^[Bb]earer /, "").trim();
         const user = <UserIDJwtPayload>jwt.verify(token, SECRET_KEY);
         return user;
-    } 
-    else {
-        throw Error('cannot decode jwt')
+    } else {
+        throw new Error("failed to parse jwt")
     }
-};
 
+}
 
 

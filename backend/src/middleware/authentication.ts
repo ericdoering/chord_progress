@@ -11,10 +11,12 @@ function authenticateJWT(req: Request, res: Response, next: NextFunction ) {
     if (authHeader) {
       const token = authHeader.replace(/^[Bb]earer /, "").trim();
       res.locals.user = jwt.verify(token, SECRET_KEY);
+    } else {
+      throw new UnauthorizedError();
     }
     return next();
   } catch (err) {
-    return next(err);
+    return res.status(403).send("Unauthorized")
   }
 };
 

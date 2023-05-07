@@ -20,8 +20,14 @@ type chord = {
   chordQuality: string
 }
 
+type Key = {
+  pitch: string,
+  sharp: boolean,
+}
+
 type scale = {
   chords: chord[]
+  key: Key
   pitch: string
 }
 
@@ -105,7 +111,7 @@ type progressionDetails = {
         <Stack className="align-items-center text-align-center">
         { chords && chordProgression && (
             <>
-              <h3 className="mt-5">Key: {chordProgression.scale.pitch}</h3>
+              <h3 className="mt-5">Key: {chordProgression.scale.key.pitch}{chordProgression.scale.key.sharp ? '#': ''}</h3>
                 <h3 className="mt-2">Style: {chordProgression.style}</h3>
                   <h5 className="mt-5 mb-4"><u>Songs that utilize this chord progression:</u></h5>
                     <div>
