@@ -17,17 +17,23 @@ import jwt_decode, { JwtPayload } from 'jwt-decode';
 import { useState, createContext, useEffect } from "react";
 import { API_URL } from "./api/constants";
 
+// Wrapping the whole application UserContext for state management
 const UserContext = createContext(undefined);
+
 
 function App() {
   const navigate = useNavigate()
   const homeMatch = useMatch('/')
+  // Setting loggedIn. Default setting token in localStorage to true
   const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem('token'))
+  // Setting a specific user in state
   const [user, setUser] = useState(undefined)
+  // Defining the logout function which will remove a users token from local storage and toggle loggedIn to be false
   const logout = () => {
     localStorage.removeItem('token')
     setLoggedIn(false)
 }
+// getUser which will set the token to local storage
   async function getUser() {
     try {
       const token = localStorage.getItem('token')
@@ -37,6 +43,7 @@ function App() {
       const decodedToken = jwt_decode<JwtPayload>(token)
 
       // @ts-ignore
+      // API call that will fetch the specific user based on the id that is decoded. We wll then set that user information in state
       const id = decodedToken["id"]
       const response = await axios.get(`${API_URL}/user/${id}`);
       if (response.status == 200) {
@@ -47,6 +54,7 @@ function App() {
     }
   }
 
+  // A useEffect function that will send the user to the landing page anytime there is a login or chance in user information.
   useEffect(() => {
     if(!loggedIn && !homeMatch) {
       navigate('/')

@@ -29,6 +29,22 @@ vi.mocked(useParams).mockReturnValue({ test: "test" })
     expect(registerButton).toBeDefined()
 
     })
+
+    test('renders a Login button with specific props', () => {
+      const handleLoginClick = vi.fn();
+      render(
+        <Button
+          onClick={handleLoginClick}
+          className="m-2"
+          variant="success"
+          size="lg"
+        >
+          Register
+        </Button>
+      );
+      const loginButton = screen.getByRole('button', { name: /Login/i });
+      expect(loginButton).toBeDefined()
+      })
   })
 });
 
