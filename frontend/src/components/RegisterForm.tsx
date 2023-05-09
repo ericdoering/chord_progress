@@ -5,6 +5,7 @@ import { API_URL } from "../api/constants";
 import { useNavigate } from "react-router-dom";
 import ".././App.css"
 
+// Type checking that the user is inputting all 4 fields as strings
 interface User {
   firstName: string;
   lastName: string;
@@ -12,15 +13,17 @@ interface User {
   password: string;
 }
 
+// Passing setLogged in as a function  prop
 interface RegisterFormProps {
   setLoggedIn: (loggedIn: boolean) => void
 }
 
-
 export const RegisterForm: React.FC<RegisterFormProps> = (props) => {
   const {setLoggedIn} = props
+  // Setting path to send user to "About" page upon login
   let navigate = useNavigate(); 
   let path = `/about`; 
+  // Setting user object in state with the 4 necessary input fields left blank
   const [user, setUser] = useState<User>({
     firstName: "",
     lastName: "",
@@ -28,26 +31,32 @@ export const RegisterForm: React.FC<RegisterFormProps> = (props) => {
     password: "",
   });
 
+  // Handles render cycle for changes in user information as they type 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value });
   };
 
+  // Will submit user information when submit button is clicked
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
+    // The register payload will take in filled out fields that the user has provided and add them as a payload.
     const registerPayload = {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
       password: user.password,
     };
+
+    // A try catch that will send the payload as a post request to the backend "register" route
     try {
       const response = await axios.post(`${API_URL}/register`, registerPayload);
       const data = response.data;
       const token = data["token"]
       localStorage.setItem('token', token)
       setLoggedIn(true)
+      // If successful the user will have their jwt token added to local storage and setLoggedIn will be set as true
     } catch (error) {
       console.error(error);
     }

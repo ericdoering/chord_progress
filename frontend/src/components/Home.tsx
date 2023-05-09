@@ -10,22 +10,29 @@ interface HomeProps {
   loggedIn: boolean
 }
 
+
 function Home(props:HomeProps){
+  // Passing the user's loggedIn boolean as a prop
     const { loggedIn } = props
     let navigate = useNavigate(); 
+    // Setting two redirection routes
     let pathRegister = `/register`;
     let pathLogin = `/login`;
+    // Nameing 3 specific stylings that will change at different points
     const [showStack, setShowStack] = useState<boolean>(false);
     const [pulse, setPulse] = useState<boolean>(false);
     const [showText, setShowText] = useState<boolean>(false);
+    // Setting state for useSound hook in state
     const [playbackRate, setPlaybackRate] = useState(1);
    
+    // Setting up the useSound hook
     const [play] = useSound(homeSound, {
       playbackRate,
       interrupt: true,
     });
     let clicked = true
 
+    // A useEffect hook that will animate logo when pulse is changed
     useEffect(() => {
       const timeout = setTimeout(() => {
         setPulse(false);
@@ -33,6 +40,7 @@ function Home(props:HomeProps){
       return () => clearTimeout(timeout);
     }, [pulse]);
 
+    // A useEffect hook that will delay text from showing once the logo is clicked
     useEffect(() => {
         let timeout: NodeJS.Timeout;
         if (showText) {
@@ -43,6 +51,8 @@ function Home(props:HomeProps){
       }, [showText]);
 
 
+    // Initiating various functions once the logo is clicked
+    // Once the logo is clicked, sound will play, the buttons will appear, then one line of text, then the final line of text
     const handleImageClick = () => {
       setShowText(true);
       setShowStack(true);
@@ -52,6 +62,7 @@ function Home(props:HomeProps){
       clicked = false;
     };
 
+    // Setting the useNaviate hook to bring the user to the appropriate link depending on which button is clicked
     const handleRegisterClick = () => {
         navigate(pathRegister)
     }
@@ -61,6 +72,7 @@ function Home(props:HomeProps){
     }
 
 
+    // Based on if the user is logged in, we will display appropriate information 
     return (
         <>
         <Stack className="align-items-center bold text-align-center">
