@@ -9,15 +9,19 @@ interface User {
   password: string;
 }
 
+// Check loggedIn prop
 interface LoginFormProps {
   setLoggedIn: (loggedIn: boolean) => void
 }
 
+
 export const LoginForm: React.FC<LoginFormProps> = (props: LoginFormProps) => {
+  // state variable that creates a flash warning
   const [error, setError] = useState('');
   const {setLoggedIn} = props;
   let navigate = useNavigate(); 
   let path = `/chordprogressions`; 
+  // Setting login information to just email and password
   const [user, setUser] = useState<User>({
     email: "",
     password: "",
@@ -49,8 +53,6 @@ export const LoginForm: React.FC<LoginFormProps> = (props: LoginFormProps) => {
     }
   };
 
-
-  
 
   return (
     <Form onSubmit={handleSubmit}>

@@ -13,6 +13,7 @@ import "./About.css"
 
 
 function About(){
+    // Setting state for 3 display texts
     const [showStack, setShowStack] = useState<boolean>(false);
     const [displayText, showText] = useDisplayText();
     const [playbackRate, setPlaybackRate] = useState(1);
