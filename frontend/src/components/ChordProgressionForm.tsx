@@ -32,7 +32,7 @@ const style: Option[] = [
   { value: "Blues", label: "Blues" },
 ];
 
-
+// The key and the style are the only values that need to be stored and submitted for the chordProgression Form
 export const ChordProgressionForm = () => {
   const [selectedOption1, setSelectedOption1] = useState<Option | null>(null);
   const [selectedOption2, setSelectedOption2] = useState<Option | null>(null);
@@ -56,6 +56,8 @@ export const ChordProgressionForm = () => {
         style: selectedOption2?.value
       },
     };
+    // If both fields are filled out we are going to take the user to that new chord progression
+    // It will slice the most recent chordProgression array and put that into the url
     if(selectedOption1 && selectedOption2){
     try {
       const response : AxiosResponse = await jwtPost(`chordProgressions/add`, chordProgressionPayload);

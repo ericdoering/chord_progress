@@ -12,6 +12,7 @@ interface ChordProgressionType {
 export function ChordProgressionList() {
   const [chordProgressions, setChordProgressions] = useState<ChordProgressionType[]>([]);
   
+  // This useEffect will query the chordProgressions and not rely on any dependency
   useEffect(() => {
     const getChordProgressions = async () => {
       const result = await jwtGet<ChordProgressionType[]>(`chordProgressions`);
@@ -26,6 +27,7 @@ export function ChordProgressionList() {
     setChordProgressions(chordProgressions.filter(chordProgression => chordProgression._id !== id));
   }
 
+  // Map the chordProgressions as listed cards that also contain a delete button
   const progressionComponents = chordProgressions.reverse().map((chordProgression: ChordProgressionType) => (
     <li style={{ marginBottom: "10px", position: "relative"}}>
       <div style={{ position: "absolute", top: 0, left: 0, zIndex: 2 }}>

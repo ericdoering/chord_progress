@@ -20,5 +20,5 @@ export async function jwtDelete<T>(path: string): Promise<AxiosResponse<T>> {
         const token = localStorage.getItem('token');
         if (!token) throw Error('Unauthorized');
         const headers = {'Authorization': `Bearer ${token}`};
-        return await axios.delete<T>(`${API_URL}/${path}`, { headers });
+        return await axios.delete<T>(`${API_URL}/${path}`, {headers});
       }
